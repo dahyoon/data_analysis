@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset = "UTF-8">
+        <title> big data class</title>
+        <link rel="stylesheet" href="test.css"> 
+        <!-- <style> 
+            .my_class {
+				color: darkred;
+			}
+            h1{ color: pink}
+            #my_h3{ color: purple}
+            .my_class1{ color: lightgreen;} 
+        </style> -->
+        <script>
+			function changeText(){
+				// 대상이 되는 html 태그를 pick -> getElementsByClassName
+				// 복수형으로 pick된 데이터는 list형태
+				// for문으로 하나씩 순회하면서 태그의 text 변경
+				var myPicks = document.getElementsByClassName("my_class");
+				for (var i = 0; i<myPicks.length; i++) {
+				// .innerHTML 문법: 특정 태그의 값을 변경하는 함수
+				myPicks[i].innerHTML = "hello world!!!!"
+                }
+            }
+            function myfunction() {
+                document.getElementById("demo").innerHTML = "자바스크립트를 배보죠죠죠죠!";
+            }
+		</script>
+    </head>
+	<body>
+        <p class = "my_class">
+			hello world1
+		</p>
+		<p class = "my_class">
+			hello world2
+		</p>
+		<button onclick = "changeText()"> 문자 변환 </button>
+        <h1> hello world 1 </h1>
+        <h2 style = "color: lightblue";> hello world 2 </h2>
+        <h3 id = "my_h3"> hello world 3 </h3>
+        <h4 class = "my_class1"> hello world 4 </h4>
+        <h5> hello world 5 </h5> 
+        <h1> 자바스크립트를 이용한 문장 삽입</h1>
+        <p id = "demo"></p>
+        <button onclick = "myfunction()"> 실행 </button>
+    </body>
+    </html>
+
+
+<!--h1 hello world1 -> 태그명 style color xxxx
+h2 hello world2 -> 인라인 style color xxxx
+h3 hello world3 -> 아이디 지정 후 스타일 color xxxx
+h4 hello world -> class 지정 후 스타일 color xxxx
+h5 hello world5 -> link 지정 후 스타일 color xxxx

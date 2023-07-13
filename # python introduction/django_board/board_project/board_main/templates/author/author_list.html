@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class = "page-tutle">회원목록</h1>
+    <a href = "/author/new" class = "btn btn-primary" style = "background-color: white; border: 1px solid grey; color: #808080">
+    &nbsp;회원가입&nbsp;
+    </a>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>&emsp;&emsp;이름&emsp;&emsp;</th>
+            <th>&emsp;&emsp;이메일&emsp;&emsp;</th>
+            <th>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;가입일&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for author in authors %}      
+        <tr>
+            <td><a href="/author/{{author.id}}">{{author.name}}</a></td>
+            <td>{{author.email}}</td>
+            <td>{{author.created_at}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

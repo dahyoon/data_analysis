@@ -1,0 +1,22 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<style>
+    form, input {font-family:  'IBM Plex Sans KR', sans-serif; color: #808080;}
+    .edit1 {font-family:  'IBM Plex Sans KR', sans-serif; color: #808080; background-color: white; border: 1px solid grey; }
+</style>
+    <form method = "POST">
+    {% csrf_token %}
+    <div>
+        이름: <input type = "text" name = "my_name"><br><br>
+        /div>
+
+        <dc>
+
+        </dic>
+        이메일: <input type = "text" name = "my_email"><br><br>
+        비밀번호: <input type = "text" name = "my_password"><br><br>
+        <input type = "submit" value = "회원가입" class = "edit1">
+    </form>
+    
+{% endblock %}

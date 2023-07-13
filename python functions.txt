@@ -1,0 +1,24 @@
+enumerate():
+- 인덱스(index)와 원소를 동시에 접근하면서 루프를 돌림
+- for 문의 in 뒷 부분을 enumerate() 함수로 한 번 감싸줌
+- >> 인덱스와 원소로 이루어진 튜플(tuple) 출력
+- 예) for entry in enumerate(['A', 'B', 'C']):
+      print(entry)
+      >> (0, 'A')
+         (1, 'B')
+         (2, 'C')
+-  인덱스와 원소를 각각 다른 변수에 할당하고 싶다면 인자 풀기(unpacking)를 해줘야 함
+- 얘) for i, letter in enumerate(['A', 'B', 'C']):
+      print(i, letter)
+      >> 0 A
+         1 B
+         2 C
+- 시작 인덱스 변경: 인덱스를 0이 아니라, 1로 시작하고 싶을 때 start=1
+- 얘) for i, letter in enumerate(['A', 'B', 'C'], start=1):
+      print(i, letter)
+      >> 1 A
+         2 B
+         3 C
+
+timestamp에서 날짜만 추출"
+- .strftime('%y-%m-%d')

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title> 환영합니다.</title>
+    </head>
+    <body>
+        <table>
+            <style>
+                thead, tbody {font-size: 30; background-color: pink; color: white;}
+                th {border-radius: 7px}
+            </style>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>이메일</th>
+                    <th>비밀번호</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in datas %}      
+                <!-- 위 문법은 html문법이 아니라 python 템플렛의 문법이다 -->
+                <tr> 
+                    <th>{{data.name}}</th>
+                    <th>{{data.email}}</th>
+                    <th>{{data.password}}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

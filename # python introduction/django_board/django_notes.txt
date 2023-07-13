@@ -1,0 +1,145 @@
+django
+    - 모든 url매핑은 url.py
+
+django 깔기?
+    - git hub 웹사이트에 new repository 만들기 - 이름: django_board
+    - terminal에 다음과 같이 입력:
+        - git clone URL(github에서복사한것 -> django_board)
+        - pip install django                        -> django 프로젝트가 생성 가능하도록 필요한 패키지 설치
+        - django-admin startproject board_project   -> board_project라는 이름의 파일(기본프로젝트:모든 프로젝트의 전체설정) 생성
+        - python3 manage.py runserver               -> manage.py는 웹서버실행파일
+	- cd board_project
+	- python manage.py startapp board
+	- cd board
+	- python manage.py runserver
+
+    - google chrome 웹브라우저 URL에 localhost:8000 입력
+    - google chrome 웹브라우저 URL에 localhost:8000/admin 입력
+    - python3 manage.py startapp board_main         -> 파일 생성
+        - 여기서 중요한 파일: migrations, models.py, views.py
+            - migrations
+		- table 구성변경 시 해당 폴더에 DDL쿼리가 자동 생성됨
+            - models.py
+		- DB의 table의 구조와 똑같은 형태의 파이썬 class를 만드는 파일
+            - views.py
+		- 사용자가 url을 통해 요청 시 url과 매핑되는 파이썬 함수가 있는 파일; 로직이 들어있는 파일
+--> 간단한 게시판 개발
+- 모델 생성
+	/board/models.py
+- 뷰 생성
+	/board/views.py
+- form 생성
+	/board/forms.py
+- 탬플릿 생성
+	/board/templates/…
+- url 매핑
+	board/urls.py, urls.py
+- 설정변경
+	settings.py
+		INSTALLED_APPS에 board추가
+		TEMPLATES 수정
+
+DB setting
+- docker mysql 실행 및 board 스키마 생성
+- pip install mysqlclient
+- settings.py 수정
+	- host에 127.0.0.1 해야함에 유의
+- 데이터베이스 마이그레이션
+	- python manage.py makemigrations
+	- python manage.py migrate
+
+
+
+django 접속
+(터미널)
+    - ls
+        - manage.py 뜰 때까지 cd로 장소 옮기기
+    - python3 manage.py runserver
+        - unapplited migration(s) 라고 뜨면 
+        - python3 manage.py migrate 입력 후 
+        - 다시 위 명령어 입력
+
+(google chrome 웹사이트)
+    -localhost:8000
+
+1. 템플릿 엔진: 백엔드에서 화면까지 - 옛날방식
+    - 
+2. rest api 방식: 프론트/백엔드 구분 - 현대적인 프로그래밍
+
+developer tools
+    - Network -> Headers -> General
+        - Request URL: http://localhost:8000/
+        - Request Method: GET
+            - GET: 어떤 자원 (resource, 화면)을 달라고 서버에게 요청하는 것
+            - POST: 어떤 자원을 등록하기 위해 사용자가 서버에게 전송하는 것
+        - Status Code: 200 OK
+            - 200: http 상태코드
+            - 200번대 상태코드는 정상임을 사용자에게 알려주는 상태코드
+            - 300번대 상태코드는 화면 redirect 상태코드
+            - 400번대 상태코드는 사용자의 잘못임(예- 사용자가 잘못 요청)을 알려주는 상태코드
+            - 500번대 상태코드는 서버의 잘못임을 알려주는 상태코드
+            - 보통 200~500번대까지 사용
+            - 프론트엔드와 서버가 구분 됐을 때 위 상태코드가 중요하게 사용 됨
+            - 대표적: 200 ok, 404 not found, 500 internal server (서버 내부 오류)
+기본 지식
+- 사용자와 서버 간에는 request(요청), response(응답)을 주고 받는다
+- 요청과 응답은 정해진 프로토콜(약속)에 맞게 통신이 이루어져야 하고 이 프로토콜을 http 프로토콜이라 한다
+- 요청과 응답 각각 header와 body로 이루어져있다: request header, requuest body, response header, response body
+- header에는 url port 등 주요요약정보가 담겨있고, body에는 본문내용이 담겨있다.
+- get요청은 header에 요청하고자 하는 정보를 넣어 요청하는 방식임으로 header는 확인이 가능하나.
+- post요청은 body에 data를 넣어 요청하는 방식이라 보안이 강화되어있다 (제 3자의 하이재킹이 어렵다).
+- crsf: post요청의 경우에는 보안상 서버에 치명적인 영향을 끼칠 수 있으므로 crsf 토큰이라는 것을 django에서 사용한다.
+
+- get요청 -> 화면 응답 (html + 상태코드)
+- post요청 -> 화면을 줄게 없으니, 상태코드를 응답
+
+Postman
+- postman을 가지고 post요청을 할 때 csrf_token이 문제가 된다
+- csrf_token를 막을 수 있다:
+    - settings.py 파일에 가서 MIDDLEWARE = 'djangp.middleware.csrf.CsrfViewMiddleware' 을 주석처리하면 된다
+    - 프로젝트 할 떄에는 주석처리 했다가 끝나고 나서 다시 풀면 됨
+- 아니면 템플릿엔진 (html까지 django안에서)을 써도 된다.
+
+
+ORM
+- settings.py에 DB정보(미리 스키마는 생성해야 함 - 자동생성 X)
+- 테이블은 파이썬의 클래스를 통해 자동생성 O 
+-> 파이썬의 객체와 DB의 테이블의 sync를 맞추고, 별도의 raw query 없이 DB를 컨트롤하는 것을 ORM이라 함
+
+DB 세팅
+- docker mysql 실행 및 board 스키마 생성
+- pip install mysqlclient
+- settings.py 수정
+
+마이그레이션
+- python3 manage.py makemigrations --> DDL문생성
+- python3 manage.py migrate --> DDL문 생성 후 반영
+
+DB 세팅
+- docker mysql 실행 및 board 스키마 생성
+- pip install mysqlclient
+- settings.py 수정
+
+docker exec -it board_mysql mysql -u root -p
+
+1. 계시판 목록
+1) 제목, (작성자), 작성일
+2. 게시글 등록
+1) 제목, 내용 (text area), (작성자 email)
+3. 게시판 상세조회
+1) 제목, 내용, (작성자), 작성일, 수정일
+4. 게시글 수정 : 제목, 내용
+
+
+
+Models.py에 맨 밑 author 끝에 
+, related_names='posts'
+
+
+django-admin : 'django-admin' 용어가 cmdlet, 함수, 스크립트 파일 또는 실행할 수 있는 프로그램 이름으로 인식되지 않습니
+다. 이름이 정확한지 확인하고 경로가 포함된 경우 경로가 올바른지 검증한 다음 다시 시도하십시오.
+위치 줄:1 문자:1
++ django-admin --version
++ ~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (django-admin:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException

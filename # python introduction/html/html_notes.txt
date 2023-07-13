@@ -1,0 +1,853 @@
+html
+
+배경지식
+- 웹 페이지에 들어가면 3가지가 들어가있다: html(주소)), css(디자인), javascript(기능) -> 프론트엔드의 3가지 요소
+- 웹 브라우저 안에 html과 javascript를 해석하는 기능을 갖고 있어 자동으로 해석해준다; python은 웹 브라우저가 지원 안 해주므로 따로 다운로드 받아야 된다
+
+HTML (HyperText Markup Language)
+    - 웹브라우저 위에서 동작하는 언어, 웹브라우저가 해석하는 언어
+    - HyperText: 참조(하이퍼링크)를 통해 독자가 한 문서에서 다른 문서로 즉시 접근 할 수 있는 텍스트
+    - Markup
+        - <태그 이름> // 시작 태그
+        - </태그 이름> // 종료 태그
+        - 빈 태그도 존재
+            - <img> <br> <hr> 등과 같이 종료 태그 없이 시작 태그만 가지는 태그
+    - 확장자를 .html로 저장 (javascript 는 .js)
+
+구조
+    <!DOCTYPE html>  -> 생략가능하나 명시해주는 것이 좋음
+    <html>             -> head 하나, body 하나
+        <head>          -> Meta정보 (전체 시스템에 대한 요약 정보)
+            <title>HTML문서의 제목입니다.</title>      -> title 태그는 head에 들어간다; script랑 style 태그도 들어갈 수 있다 
+        </head>
+
+        <body>                          -> 실질적으로 화면에 나오는 것
+            <h1>제목 크기 1 입니다.</h1>    -> 중요한 정보를 쓸 때 사용
+            <h2>제목 크기 2 입니다.</h2>
+            <p>이 부분은 단락입니다.</p>
+        </body>
+    </html>
+
+    - <!DOCTYPE html> : HTML5 문서임을 명시(버전명시2014~)
+        - 생략가능하지만 되도록 확실하게 넣는 것을 추천
+    - <html> : HTML 문서를 감싸는 최상단 태그 
+        - 루트 요소라 부름
+    - <head> : HTML 문서의 메타데이터(metadata) 정의
+        - 메타데이터(metadata)란 HTML 문서에 대한 정보(data)로 웹 브라우저에는 직접적으로 표현되지 않는 정보
+        - <title>, <style>, <script>, <meta> 등이 있음
+            - 에) <meta charset="UTF-8">
+    - <title> : 웹 브라우저의 툴바(toolbar)에 표시, 즐겨찾기(favorites)에 추가시 즐겨찾기의 제목, 검색 엔진의 결과 페이지에 제목으로 표시
+    - <body> : 웹 브라우저를 통해 보이는 내용(content) 부분입니다
+    - <h1> ~ <h6> : 제목(heading)을 나타냄
+    - <p> : 단락(paragraph)을 나타냄
+
+요소 구조
+    - <p class = "para" > TCPschool.com </p>
+        - p - 태그이름
+        - <p class = "para"> - 시작태그
+        - class - 속성명
+        - "para" - 속성값
+        - TCPschool.com - 내용
+        - </p> - 종료태그
+    - 유의 사항
+        - 속석명은 소문자
+        - 속성값은 따옴표
+단락 (paragraph)
+    - 단락이란 내용상 끊어서 구분할 수 있는 부분을 의미하며, 문단이라고도 부름
+    - 예)
+        <p>우리 홈페이지 제작강좌는 초보자를 대상으로 합니다. 그러므로 가능한 쉬운 용어를 일관성 있게 사용하려고 노력하고 있습니다.</p>
+        <p>우리 HTML 강좌는 단순히
+        화면에 출력되는 문서의 모양만 설명하지 않고 보다
+        의미있는 HTML 문서를 작성하는 방법을<br>
+        추구하고 있습니다.</p>
+
+    - <p>태그의 위아래로는 약간의 여백(margin)이 자동으로 삽입 줄바꿈이 됨
+    - 웹 브라우저는 여러 번의 띄어쓰기나 줄 나누기를 오직 하나의 띄어쓰기로 인식
+    - 태그 내에서 줄바꿈을 하고 싶다면 <br> 태그
+        - <br>태그는 종료 태그가 없는 빈 태그
+서식
+    - 강조효과
+        - <b>태그(bold text) : 굵게
+        - <strong>태그 : 굵게 && 중요함
+        - <i>태그 : 이탤릭체
+        - <em>태그 : 이탤릭체 && 중요함
+        - <mark>태그 : 형광펜 하이라이팅
+    - 삭제 효과
+        - <del>태그(delete) : 중앙가로줄
+    - 위첨자와 아래첨자 효과
+        - <sup>태그 : 제곱을 나타내는데 사용
+        - <sub>태그 : H2O같은 화학기호에서 2를 아래첨자로 사용할때
+주석, 엔티티
+    - 주석은 웹 브라우저에 의해 해석되지 않음
+    - 구조:
+        <!--주석 내용 -->
+    - 엔티티
+        - <p><p> 태그는 두 번째로 큰 제목을 나타내는 태그입니다.</p>
+        - <p>&lt;p&gt;태그는 단락을 나타내는 태그입니다.</p>
+        - 공백을 의미하는 엔티티는 &nbsp; 
+    - 공백:
+	- &nbsp; 한칸
+	- &emsp; 4칸
+	- <p style = "text-indent: 5em;">
+문자셋
+    - 당 문서가 어떠한 문자셋으로 저장되었는지 표기
+    - <head>태그 내의 <meta>태그에 명시
+    - HTML5에서 UTF-8의 경우 : <meta charset="UTF-8">
+        - HTML5이전
+            - <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+HTML 스타일(style)
+    - <태그이름 style="속성이름:속성값">
+        - 배경색 변경
+            1. 각 태그에다가 style 주기
+                <h1 style="background-color:pink">
+                    style 속성을 이용한 배경색 변경
+                </h1>
+            2. head에다가 style 주기
+                <head>
+                    <meta charset="UTF-8">
+                    <title>big data class</title>
+                    <style>
+                        h1{
+                            background-color: lightskyblue;
+                        }
+                    </style>
+	            </head>
+            3. head에다 link 주기 (다른 파일에 써 놓고 - 길이가 긴 경우 보통 이렇게 함)
+            4. head에다 script 주기
+        - 글자색 변경
+            <h1 style="color:maroon">
+                style 속성을 이용한 글자색 변경
+            </h1>
+        - 글자 크기 변경
+            <h1 style="font-size:250%">
+                style 속성을 이용한 글자 크기 변경
+            </h1>
+            - pixel과 % 둘 다 적용 가능하다
+            - 예) 15px
+        - 한꺼번에
+            <h1 style="background-color:white; color:maroon; font-size:150%; text-align:center">
+                style 속성을 이용하여 한 번에 스타일링 하기!
+            </h1>
+텍스트 속성
+    -  구조
+        <head>	<style>
+                body { color: red; }
+                p { color: maroon; }
+            </style>
+        </head>
+        <body>
+
+            <h1>color 속성을 이용한 텍스트의 색상 설정</h1>
+            <p>우선 적용</p>
+        </body>
+    - text 컬러 속성
+        - <body>태그에 명시된 color 속성값은 웹 페이지 내의 모든 텍스트 요소에 적용
+        - 각 요소별로 따로 명시된 color 속성값이 있다면, 해당 속성값이 우선 적용
+    - letter-spacing 속성
+        - 텍스트 내에서 글자 사이의 간격을 설정
+    - word-spacing 속성
+        - 텍스트 내에서 단어 사이의 간격을 설정
+    - line-height 속성
+        - 텍스트의 줄 간격을 설정
+    - text-align 속성
+        - 텍스트의 수평 방향 정렬을 설정
+        <head>
+            <style>
+                h2 { text-align: left; }
+                h3 { text-align: right; }
+                h4 { text-align: center; }
+            </style>
+        </head>
+        <body>
+            <h1>text-align 속성을 이용한 수평 정렬</h1>
+            <h2>텍스트의 왼쪽 정렬입니다.</h2>
+            <h3>텍스트의 오른쪽 정렬입니다.</h3>
+            <h4>텍스트의 가운데 정렬입니다.</h4>
+        </body>
+    - font 속성
+        - font-style 속성  
+            - 주로 이탤릭체를 사용하기 위해 사용
+            - .normal { font-style: normal; }
+        - font-size 속성은 텍스트의 크기를 설정
+            - 절대적 크기 - 픽셀 단위(px)
+            - 상대적 크기 - 백분율 단위(%)는 기본 크기를 100%로 놓고, 배수 단위(em)로 상대크기
+리스트 속성
+    - list-style-type를 통해 리스트에 다양한 마커(marker)를 적용
+        - circle
+        - square
+        - upper-alpha 등
+테이블 속성
+    - border를 통해 테이블의 테두리(border)를 설정
+        - 테이블은 기본 설정으로 빈 테두리
+            <style>
+            table, th, td { border: 2px solid orange; }
+            </style>
+        - <th>태그와 <td>태그가 각각 자신만의 테두리를 가지므로 2줄로 표현
+    - border-collapse 속성값을 collapse로 설정하면 해당 테이블의 테두리는 한 줄로 표현
+        - table { border-collapse: collapse; }
+    - border-spacing 속성은 테이블 요소(th, td)간의 여백을 설정
+    - text-align 속성은 테이블 요소(th, td) 내부에서 텍스트의 수평 방향 정렬
+        - th { text-align: left; }
+        - td { text-align: center; }
+그 외 속성
+    - height와 width 속성은 높이와 넓이
+    - padding은 내용과 테두리 사이의 간격
+
+
+
+
+
+HTML 배경
+    - HTML 문서의 기본 배경(background)은 흰색
+    - 배경을 다른 이미지로 변경
+        <body background="/examples/images/img_background_good.png">
+        </body>
+        - <body background="/경로1/경로2/경로3.../이미지이름">
+          </body>
+HTML 링크
+    - HTML 링크(Link)
+        <a href="링크주소”, target="_blank">
+        원하는 문구
+        </a>
+            - target= "n” 
+                - n에다가 _blank -> 새 창이나 새 탭에서 오픈
+                - n에다가 _self -> 현재 프레임(frame)에서 오픈. (기본설정)
+HTML 이미지 삽입
+    <img src="이미지주소url" alt="대체문자열” width="200" height="200">
+        - alt = "대체문자열" 생략가능
+        - 예) <img src="/Users/dayoonz/Desktop/안다윤/html/cuteWhiteCatComic.png" width="200" height="200">
+        - 열고 닫고 없음
+        - 대체문자열이란 이미지 로딩이 안될때 대신 나타낼 문자열
+        - witdth, height 으로 길이 넓이 지정 가능
+            - style="width:320px; height:214px＂ 방식으로 설정도 가능
+        - style="border: 3px solid black＂
+            - 위 방식으로 테두리 픽셀 지정가능
+    - 이미지에 링크설정
+        <a href="/html/intro" target="_blank">
+            <img src="/examples/images/img_flag.png" style="width:320px; height:214px">
+        </a>
+HTML 리스트
+    - 순서가 없는 리스트(unordered): ul 태그
+        <ul> <li> </li> </ul>
+        - 순서가 없는 리스트는 <ul>태그로 시작, 각각의 리스트 요소는 <li>태그로 시작
+        <ul style="list-style-type: circle"></ul>
+            - list-style-type 속성을 사용하여 마커 모양 변경
+            - circle(흰색원), square, disc(검은색원-기본설정) 등
+    - 순서가 있는 리스트(ordered): ol 태그
+        <ol> <li> </li> </ol>
+        <ol style="list-style-type: upper-alpha"></ol>
+            - decimal(숫자-기본), upper-alpha(영문대문자), upper-roman(로마숫자대문자) 등
+HTML 테이블
+    - <table>태그를 사용하여 이러한 테이블을 작성
+    - <th>태그는 각 열의 제목
+    - <tr>태그는 테이블에서 행을 의미
+    - <td>태그는 tr안에 정의
+        - 테이블의 행의 각 셀을 의미
+        - th의 갯수만큼 td의 갯수
+    - <thead><tbody>등의 tag안에 위 3태그를 넣어 구분하기도 함
+    - <caption>태그를 사용하면 테이블 상단에 제목
+    - 구조:
+        <table>
+            <thead>             => 컬럼명
+                <tr>            => 첫번째 tr은 무조건 head다 - <thead></thead> 생략해도 첫번째 <tr></tr>은 무조건 <thead>로 인식 됨 
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>             => data들
+                <tr>            => 정보1
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr> => 정보2
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr> => 정보3
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+HTML 블록/인라인
+    - 블록(block)은 새로운 라인에서 시작하게 하는 태그, 인라인은 같은 라인에 적용되는 태그
+    - 대표적인 블록 태그: <p>, <div>, <ul>, <ol>, <form>요소 등
+    - 인라인(inline) 태그: <span>, <a>, <img>요소 등
+        - <span> 태그는 특별한 기능을 갖고있지 않고 CSS와 함께 많이 사용
+	- <span> 태그는 같은 줄로 출력
+    - div 태그
+        - 다른 HTML 요소들을 하나로 묶는 데 사용
+        - 가장 빈번히 사용되는 태그 중 하나
+        - 여러 요소들의 스타일을 한 번에 적용하는 예제
+        <div style="background-color:lightgrey; color:green; text-align:center">
+            <h1>div요소를 이용한 스타일 적용</h1>
+            <p>이렇게 div요소로 여러 요소들을 묶은 다음에 style 속성과 클래스 등을 이용하여
+            한 번에 스타일을 적용할 수 있습니다.</p>
+        </div>
+    - form 태그
+        - 웹 페이지에서는 form 요소를 사용하여 사용자로부터 입력
+        - 사용자가 입력한 데이터를 서버로 보낼 때 form 요소를 사용
+            - get 요청은 url을 통해서 서버로 데이터 요청   
+                - 민감하지 않은 정보를 요청
+            - post 요청은 url이 아닌, 눈에 보이지 않는 request body에 데이터를 넣어 서버로 전송
+                - 민감한 정보를 요청
+        - <form action="처리할페이지주소" method="get 또는 post"></form>
+            - action 속성은 입력받은 데이터를 처리할 서버 주소를 명시
+        - form 요소 그 자체는 웹 페이지에 나타나지 않고, input요소와 함께 보통 사용
+            - input 요소를 통해 사용자로부터 입력
+        - form태그에서 submit버튼이 눌렸을 떄 서버로 post요청하기 이전이 하이재킹
+            - 전체 문서에서 특정한 form태그가 submit 되었을 때 하이재킹
+            - getElementById()
+            - getElementsByClassName()
+            - getElemntsByTagName()
+
+                <form action="localhost:8000/author/new" method = "post" id="my_form">
+                    이름: <input type ='text' name = "my_name" id = "input_name"> <br>
+                    이메일: <input type ='text' name = "my_email" id = "input_email"> <br>
+                    비밀번호: <input type ='password' name = "my_pw" id = "input_pw"> <br>
+                    생일: <input type ="date"> <br>
+                    성별: <input type = "radio" name = "my_gender" value = "man">남
+                        <input type = "radio" name = "my_gender" value = "woman">여<br>
+                    <input type = "submit" value = "회원가입">
+                </form>
+                <script>
+                    document.getElementById("my_form").onsubmit = function(event){
+                        var name = document.getElementById("input_name").value;
+                        var email = document.getElementById("input_email").value;
+                        var password = document.getElementById("input_pw").value;
+                        if (name === "" || email === "" || password === ""){
+                            alert("이름, email, password는 필수값입니다.")
+                            event.preventDefault();
+                        }
+                        if(password.length <8){
+                            alert("비밀번호가 너무 짧습니다. 최고 8자 이상을 입력해주세요.")
+                            event.preventDefault();
+
+                        }
+                    };
+                </script>
+    
+input 태그
+    - input 태그 안에 name 값으로 변수를 반드시 지정해줘야 된다
+    - input요소의 타입
+        - 텍스트 입력(text)
+        - 비밀번호 입력(password)
+        - 라디오 버튼(radio)
+            - 성별 입력 (gender)
+                <input type="radio" name="gender" value="man">남
+                <input type="radio" name="gender" value="woman">여
+        - 체크박스(checkbox)
+        - 파일 선택(file)
+        - 문장 입력(textarea)
+        - 선택 입력(select)
+            - select 태그를 사용
+            - 성별 입력 (gender)
+            <select name="job">
+                <option value="">성별 선택</option>
+                <option value="남">남</option>
+                <option value="여">여</option>
+            </select>
+        - 버튼(button)
+            - button 태그를 사용
+            <button> </button>  => button 생성
+            <button onclick = "실행함수명()"> 문자변환 </button>
+            - 이 경우 앞에 head에서 script로 함수명을 정의해줘야 함
+        - 전송
+            - <input>태그의 type 속성값을 "submit"으로 설정
+            - 예) <input type = "submit", value = "회원가입">
+            - 입력받은 데이터(data)를 name속성을 key로 하여 form을 통해 서버로 제출
+    - 사용예시
+        <form action="/authors/new" method="post">
+            이름 : <br> 
+            <input type="text" name="username"><br>
+            이메일 : <br>
+            <input type="text" name="email"><br><br>
+            <input type="submit" value="전송">
+        </form>
+    - value속성
+        - 초깃값을 설정
+    - readonly속성
+        - 사용자가 수정할수 없도록
+        - 그러나, 서버로 전송은 됨
+        - disable속성과의 차이
+            - disable은 서버로 전송이 안됨
+    - maxlength 속성
+        - 입력할수 있는 최대길이 설정
+        - size 속성과의 차이
+            - 보여지는 길이만을 설정
+그 외 input 태그
+    - 숫자 입력(number) 
+        <input type="number" name=”mynumber" min="1" max="9">
+    - 색상 입력(color)
+        <input type="color" name="favcolor" value="#CC6600">
+    - 날짜 입력(date)
+        <input type="date" name="startday"> ==> string으로 정보 전송
+    - 시간 입력(time)
+        <input type="time" name="birthtime">
+    - 날짜와 시간 입력(datetime-local)
+        <input type="datetime-local" name="starttime">
+    - 이메일 입력(email)
+        - email 주소가 유효한 email 주소인지 자동으로 검사
+        - @를 포함했는지, 영문으로 입력했는지 등
+    - 패스워드(password)
+        <input type=”password" name=”mypassword">
+
+
+HTML과 CSS
+    - CSS 사용 이유
+        - HTML만으로 웹 페이지를 제작할 경우 HTML 요소의 세부 스타일을 일일이 따로 지정해 주어야 한다
+        - 웹 페이지의 스타일과 내용적인 부분을 서로 분리해 놓은 서식을 스타일 시트
+        - CSS는 웹 페이지의 스타일을 별도의 파일로 저장하는 것이 가능
+            - .css 확장자 파일로 저장
+            - 예)http://www.tcpschool.com/examples/tryit/tryhtml.php?filename=css_intro_intro_01
+    - 기본 문법:
+        - CSS의 문법은 선택자(selector)와 선언부(declaratives)로 구성
+        - 선택자는 CSS를 적용하고자 하는 HTML 요소
+        - 선언부는 하나 이상의 선언들을 세미콜론(;)으로 구분하여 포함
+        a { background-color: yello; font-size: 16ps; }
+            - a - 선택자
+            - { - 선언 시작
+            - background-color / font-size - 속성명
+            - yello / 16px - 속성값
+            - ; - 선언 구분자
+            - ; - 선언 끝
+
+    - HTML 문서에 CSS 스타일을 적용하는 3가지 방법 / 우선순위
+            1. 인라인 스타일 (Inline style)
+            2. 내부 스타일 시트 (Internal style sheet)
+            3. 외부 스타일 시트 (External style sheet)
+        1. 인라인 스타일
+            - 태그 안에 style
+            - HTML 요소 내부에 style 속성을 사용하여 CSS 스타일을 적용하는 방법
+            - 해당 요소만 적용
+            <p style="color:green; text-decoration:underline">
+                인라인 스타일을 이용하여 스타일을 적용하였습니다.
+            </p>
+        2. 내부 스타일 시트
+            - 태그명 {}, id(#아이디명 {}), class(.클래서명 {})
+            - HTML 문서의 <head>태그 내에 <style>태그를 사용하여 스타일을 지정
+                - 해당 HTML 문서에만 스타일을 적용되는
+                - 자식 선택자: > 를 통한 포함 관계 - 한 단계씩
+                - 자손 선택자: " " (띄어쓰기)를 통한 포함 관계 - 단계별 상관없이 해당태그이름 모두에 적용
+                - 예)
+                <head>
+                    <style>
+                        /* html 태그 방식 */
+                        body { background-color: lightyellow; }
+                        p { color: red; text-decoration: underline; }
+
+                        /* id 방식*/
+                        #myid { color: white }
+
+
+                        /* class 방식 */
+                        .myclass { color: red; }
+
+                        .part1 {
+                            background-color: pink
+                        }
+                        .part2 {
+                            background-color: yellow
+                        }
+
+                        /* 자식 선택자*/ -> ul 안에 있는 li 안에 있는 ol 안에 있는 li에만 적용
+                        .syllabus > ul > li > ol > li {text-decoration: underline; }
+                        
+                        /* 자손 선택자 */
+                        .syllabus ol li {font-weight: bold} -> 모든 ol과 li 태그에 적용
+
+                        /* 특정 대상을 구체적으로 명시 */ -> sub와 part2라는 클래스를 갖는 div 태그
+                        div.sub.part2#myid {
+                            border: 1px solid #555
+                        }
+
+                        /** 특정 속성을 갖고 있는 요소 */
+                        a[href] {
+                            font-size: 20px;
+                        }
+
+                    </style>
+                </head>
+                <body>
+                    <h1 class = "myclass"> hello </h1>
+                    <a href="https://www.naver.com"> link </a>
+                    <h2 id = "myid"> bye </h2>
+                    <div class="sub part1">
+                    <ul>
+                        <li class = "myclass"> farewell </li>
+                        <li > sayonara </li>
+                        <li > goodbye </li>
+                            <ol>
+                                <li>good</li>
+                                <li>bye</li>
+                            </ol>
+                    </ul>
+                    </div>
+                    <div class="sub part2">
+                    <ul>
+                        <li > hi </li>
+                        <li > ohayo </li>
+                        <li > goodmorning </li>
+                            <ol>
+                                <li>good</li>
+                                <li>morning</li>
+                            </ol>
+                    </ul>
+                    </div>
+                </body>
+        3. 외부 스타일 시트
+            - <link rel="stylesheet" href="/expand_style.css">
+            - 웹 사이트 전체의 스타일을 하나의 파일에서 변경
+            - <head>태그 내에 <link>태그를 사용하여 외부 스타일 시트를 포함
+            - 예)
+                <head>
+                    <link rel="stylesheet" href="/examples/media/expand_style.css">
+                </head>
+            - expand_style.css
+                body { background-color: lightyellow; }
+                p { color: red; text-decoration: underline; }
+            - 부트스트랩
+                - Twitter에서 만든 오픈 소스 프레임워크
+                - 웹 페이지를 디자인할 때 자주 사용되는 스타일을 미리 정의해 놓은 라이브러리
+                - CSS(디자인)와 JavaScript를 일일이 작성하지 않아도 된다
+                    - jQuery(기능)도 Twitter에서 개발한 자바스크립트 라이브러리 중 하나
+                - 예)
+                    <head>
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+                    </head>
+
+                    <body>
+                        <div class="container">
+                            <p>This is a very simple Bootstrap example.</p>
+                            <button class="btn btn-primary">Click me!</button>
+                        </div>
+                    </body>
+        - 스타일 적용의 우선순위
+            - 인라인 스타일이 최우선 적용
+                1. 인라인 스타일
+                2. 내부 / 외부 스타일 시트
+                3. 웹 브라우저 기본 스타일
+    - CSS 선택자(selector)
+        - HTML 요소 선택자
+            <style>
+            p { color: red; font-size: 14px; text-decoration: underline; }
+            </style>
+            ...
+            <p>이 부분에 스타일을 적용합니다.</p>
+        - 아이디(id) 선택자 - # (샵)
+            - id는 한번 사용시 반복 불가능
+            <style>
+                #para { color: teal; text-decoration: line-through; }
+            </style>
+            ...
+            <p id="para">이 부분에 스타일을 적용합니다.</p>
+        - 클래스(class) 선택자 - . (점)
+            - 특정 집단을 클래스(class)라고 하며, 동일한 클래스 이름을 가지는 요소들에 모두 적용 (반복 적용 가능)
+            <style>
+                .headings { color: lime; text-decoration: overline; }
+            </style>
+            ...
+            <h2 class="headings">이 부분에 스타일을 적용합니다.</h2>
+            <p>class 선택자를 이용하여 스타일을 적용할 HTML 요소들을 한 번에 선택할 수 있습니다.</p>
+            <h3 class="headings">이 부분에도 같은 스타일을 적용합니다.</h3>
+
+<body> 안에서도 <header></header>, <main></main>, <footer></footer>로 나눌 수 있다 
+   예)
+    <body>
+        <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div>
+                <ul class = "navbar-nav">
+                    <li>
+                        <a class = "nav-link" href = '/'>Home</a>
+                    </li>
+                    <li>
+                        <a class = "nav-link" href="/posts">게시판</a>
+                    </li>
+                    <li>
+                        <a class = "nav-link" href="/authors">회원관리</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        </header>
+        <!-- class 명에 이름 2개를 쓰면 2개의 클래스가 적용된다-> -->
+        <main class = "container mt-5"
+        {% block content %}
+        <!-- 아래 블록에 자식화면이 나오게 된다 -->
+        {% endblock %}
+
+        </main>
+        <footer>
+            <div>
+                <p class = "text-center mb-0">나의 첫 게시판</p>
+            </div>
+        </footer>
+    </body>
+
+
+HTML과 JAVASCRIPT
+
+0. 화면만
+1. 화면에 데이터를 미리 담아서
+2. html이랑 javascript를 먼저 주고 javascript를 통해 django 서버에 데이터를 요청해서 받는 받식 (현대적인 방식)
+
+    - HTML로는 웹의 내용을 작성하고, CSS로는 웹을 디자인하며, 자바스크립트로는 웹의 동작을 구현
+    - 웹 브라우저에는 자바스크립트 인터프리터가 내장
+    - script 요소 내부에 직접 스크립트를 작성하거나, 외부 스크립트 파일의 주소를 src 속성값으로 명시
+    - script 요소 내부에 직접 스크립트를 작성
+        - demo id를 가진 p태그에 스크립트를 통해 문구 삽입
+            <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+                <meta charset="UTF-8">
+                <title>HTML JS</title>
+            </head>
+            <body>
+                <h1>자바스크립트를 이용한 문장 삽입</h1>
+                <p id="demo"></p>
+                <script>
+                    document.getElementById("demo").innerHTML = "자바스크립트를 배워보죠!";
+                </script>
+            </body>
+            </html>
+        - head태그에 script를 삽입할 경우 body와 동시에 읽히기 때문에, 아래와 같이 하면 적용될 수도 있고 안될 수도 있다
+            <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+                <meta charset="UTF-8">
+                <title>HTML JS</title>
+                <script>
+                    document.getElementById("demo").innerHTML = "자바스크립트를 배워보죠!";
+                </script>
+            </head>
+            <body>
+                <h1>자바스크립트를 이용한 문장 삽입</h1>
+                <p id="demo"></p>
+            </body>
+            </html>
+    - 외부 스크립트 파일의 주소를 src 속성값으로 명시
+        - head태그에 script를 삽입할 경우 body와 동시에 읽히기 때문에, 아래와 같이 하면 적용될 수도 있고 안될 수도 있다
+        - external.js파일 별도 생성
+            document.getElementById("demo").innerHTML = "자바스크립트를 배워보죠!";
+
+            <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+                <meta charset="UTF-8">
+                <title>HTML JS</title>
+            </head>
+            <body>
+                <h1>자바스크립트를 이용한 문장 삽입</h1>
+                <p id="demo"></p>
+                <script src="external.js"></script>
+            </body>
+            </html>
+
+JAVASCRIPT
+    - 함수
+        - .innerHTML
+    - <script>
+        function changeText(){
+        // 대상이 되는 html 태그를 pick -> getElementsByClassName
+        // 복수형으로 pick된 데이터는 list형태
+        // for문으로 하나씩 순회하면서 태그의 text 변경
+        var myPicks = document.getElementsByClassName("my_class");
+        for (var i = 0; i<myPicks.length, i++);
+        // .innerHTML 문법: 특정 태그의 값을 변경하는 함수
+        myPicks[i].innerHTML = "hello world"
+            }
+        </script>
+    - 특징:
+	- 자바스크립트로: 웹의 동작을 구현; HTML: 웹의 내용, CSS: 웹의 디자인
+        - 자바스크립트는 주로 웹 브라우저에서 사용 (프론트엔드)
+        - 웹 브라우저에는 자바스크립트 인터프리터가 내장
+        - Nodejs를 통해 서버 측 프로그래밍도 가능(백엔드)
+	- 자바스크립트는 동적언어, 인터프리터 언어
+	   - 변수의 타입을 런타임시 결정
+	   - vs 정적언어 : 컴파일 시에 변수의 타입이 결정(java, c 등)
+	   - var x = 10; var str = "Javascript";
+	- 프로토타입 중심
+	   - 자바스크립트의 모든 객체의 부모객체
+	- 자바 vs. 자바스크립트
+		- 컴파일 언어 : 인터프리터 언어
+		- 타입 검사를 엄격하게 함 : 타입을 명시하지 않음
+		- 클래스(class)기반의 객체 지향 언어 : 프로토타입(prototype)기반의 객체 지향 언어
+    -  javascript 표준
+	- 넷스케이프(Netscape)사에서 1995년 개발, 1996년 ECMA에 표준제출
+	- ECMA(European Computer Manufacturers Association)에서 1997년 표준 제정
+	- 현재 자바스크립트의 최신 표준은 2015년에 발표된 ECMAScript 6
+    -  javascript 출력
+	- window.alert() 메소드
+	   - http://www.tcpschool.com/javascript/js_intro_output
+	- HTML DOM 요소를 이용한 innerHTML 프로퍼티
+	   - ex)var str = document.getElementById("text");    
+	         str.innerHTML = "이 문장으로 바뀌었습니다!";
+
+	   - DOM은 Document Object Model의 약자
+		- 프로그래밍 언어가 DOM 구조(html 문서 구조)에 접근할 수 있는 객체를 제공
+		- javascript 또한 DOM을 이용해 문서 구조, 스타일, 내용 등을 변경할 수 있다.
+
+	   - 자바스크립트에서 특정 HTML 요소를 선택하는 방법
+		- getElementByID(), getElementsByTagName() 등
+
+	   - 요소를 변경하는 방법
+		- innerHTML을 통한 DOM요소 변경
+		- innerHTML은 DOM 객체의 속성 중 하나로, 해당 요소의 내부 HTML 콘텐츠를 나타내는 문자열을 반환하거나 설정하는 데 사용
+    - Javascript - DOM
+	- document.getElementsByTagName(태그이름)
+	   - 해당 태그 이름의 요소를 모두 선택함.
+	- document.getElementById(아이디)
+	   - 해당 아이디의 요소를 선택함.
+	- document.getElementsByClassName(클래스이름)
+	   - 해당 클래스에 속한 요소를 모두 선택함.
+	- document.getElementsByName(name속성값)
+	   - 해당 name 속성값을 가지는 요소를 모두 선택함.
+    - javascript 출력
+	- document.write() 메소드
+	   - html문서에 데이터를 출력하는데 사용
+
+	- console.log() 메소드
+	   - 브라우저의 콘솔을 통해 데이터를 출력
+	   - “개발자 도구”를 통해 확인
+	   - java의 system print와 유사한 용도로 사용
+
+    - 	javascript 적용방법
+        - 내부 자바스크립트 코드로 적용
+	    - body 태그 안에 적용
+	- head 태그 안에 적용
+	    - 외부 자바스크립드 파일로 적용
+	    - 외부에 작성된 자바스크립트 파일은 .js 확장자를 사용
+	    - 외부 js파일을 html안으로 불러온다.
+	    <head>		<meta charset="UTF-8">		<title>JavaScript Apply</title>		<script src=＂outsidejs.js"></script>	    </head>
+	    - 장점:
+                - html과 js의 분리시 각각 읽기도 편해지고, 다른 html문서에서 재활용이 가능해 유지보수성이 올라감
+                - 웹브라우저가 js를 캐싱처리하여 웹 페이지의 로딩 속도 또한 빨라짐
+		    - html도 캐싱이 가능하지만, html문서내의 변경시 다시 다운로드
+
+JAVASCRIPT
+    - 변수
+	- 자바스크립트에서는 var 키워드를 사용하여 변수를 선언
+	- var date = 25; // 변수의 선언과 동시에 초기화
+	- var num = 10;        // 숫자 변수선언,초기화num = [10, 20, 30];  // 같은 변수에 배열 대입 값을 다시 대입
+	- 변수의 이름은 숫자와의 구분을 빠르게 하려고 숫자로는 시작 X
+    - 기본타입-원시타입(primitive type)
+	- 숫자(number)
+	    - 정수와 실수를 따로 구분X
+	    - var firstNum = 10;     // 소수점을 사용하지 않은 표현
+	    - var secondNum = 10.00; // 소수점을 사용한 표현
+	- 문자열(string)
+	    - var myName = "홍길동";
+	    - 큰따옴표("") OR 작은따옴표('')
+	    - 숫자와 문자열을 더할 수도 있다. 이경우 숫자를 문자열로 자동 변환
+	- es6(2015~)이후부터는 var대신에 let을 사용해야함
+	- 모두 같은 var(또는 let)에 firstNum, myName이라 할지라도 typeof를 통해 타입을 출력하면 각각 숫자, 문자열로 출력
+	    - 실행기에서 테스트
+	    - https://qna.programmers.co.kr/code_runners?language=javascript
+	- 불리언(boolean)
+	    - true 또는 false
+	- undefined
+	    - 변수가 선언되었지만, 아무런 값도 할당되지 않은 상태
+	    - var str;
+	    - null
+	        - 값이 없음을 명시적으로 나타내기 위해 사용되는 값
+	    - null과 undefined
+	    	- ==은 값을 비교, ===은 타입까지 비교하므로 아래와 같은 관계 성립
+		    - null ==  undefined; // true
+		    - null === undefined; // false
+    - 기본타입-객체타입(object type)
+	- 자바스크립트의 기본 타입은 객체(object)
+	    - 이름과 값으로 구성된 집합
+	    - var dog = { name: "해피", age: 3 }; // 객체의 생성
+	    - console.log("강아지의 이름은 " + dog.name + "이고, 나이는 " + dog.age + "살 입니다.”);
+	    - http 통신에서 데이터 전송의 표준으로 사용되는 json과 유사한형태
+
+	- java의 객체와의 차이점
+	    - java의 객체는 class를 통해 만들어지는 인스턴스로서 필드와 메서드 존재
+	    - javascript에서는 클래스가 필요치 않은 key-value 쌍의 데이터 집합
+    - 타입 변환
+	- 자바스크립트의 변수는 타입이 정해져 있지 않다
+	- 같은 변수에 다른 타입의 값을 다시 대입할 수도 있다
+	    - var num = 20; // Number 타입의 20
+	      num = "이십"; // String 타입의 "이십"
+	- 묵시적 타입변환
+	    - 10 + "문자열"; // 문자열 연결을 위해 숫자 10이 문자열로 변환됨
+	      "3" * "5";     // 곱셈 연산을 위해 두 문자열이 모두 숫자로 변환됨.
+              1 - "문자열";  // NaN
+	    - NaN
+		- Not a Number의 축약형
+		- NaN은 Number 타입의 값으로 0을 0으로 나누거나, 숫자로 변환할 수 없는 피연산자로 산술 연산을 시도하는 경우에 반환
+	- 명시적 타입 변환(explicit type conversion)
+	    - 자바스크립트가 제공하는 전역 함수
+	    - Number("10"); // 숫자 10	      String(true); // 문자열 "true”	      Boolean(0);   // 불리언 false	      Number(false); // 숫자 0
+	- 숫자를 문자열로 변환
+	    - toString() 메소드
+		- null과 undefined를 제외한 모든 타입의 값이 가지고 있는 메소드.
+	    - toFixed(n)
+		- 소수점의 자리수를 제한하고 반올림한 문자열반환
+		- let numObj = 1.23456 
+		- console.log(numObj.toFixed(3)); // 결과: '1.235’
+		    - java에서는?
+		    - double num = 3.141592653589793238;
+		    - double roundedNum = Math.round(num * 1000.0) / 1000.0;
+		    - System.out.println(Double.toString(roundedNum));
+	    - toPrecision()
+		- 수의 길이를 제한하고 반올림한 문자열반환
+		- let numObj = 1.23456 
+		- console.log(numObj. toPrecision(3)); // 결과: '1.23’
+	- 불리언 값을 문자열로 변환
+	    - String() 함수
+		- String(true);     // 문자열 "true”
+	    - toString() 메소드
+		- false.toString(); // 문자열 "false"
+
+	- 날짜를 문자열이나 숫자로 변환
+	    - 자바스크립트에서 날짜(Date) 객체는 문자열과 숫자로 모두 변환할 수 있는 유일한 타입
+	    - 숫자반환
+		- // Date 객체 생성
+		- //원형Tue Aug 23 2022 09:13:17 GMT+0900 (한국 표준시)
+		- var date = new Date(); 
+		- date.getDate(), date.getDay(), date. getHours() 등을 통해 숫자반환
+	    - 문자반환
+		- String(Date());        // Mon May 16 2016 19:35:25 GMT+0900
+		- Date().toString();     // Mon May 16 2016 19:35:25 GMT+0900
+    - 연산자
+	- 비교 연산자(comparison operator)
+	    - == : 값이 같으면 참을 반환함.단, 타입이 다를시 강제 타입변환
+		- !=
+	    - === : 값이 같고, 같은 타입이면 참을 반환함. 
+		- !==
+	    - var x = 3, y = ‘3’;	      document.write((x == y) + "<br>");  //true	      document.write((x === y) + "<br>");   // false
+	- 피연산자가 둘 다 문자열이면, 문자열의 첫 번째 문자부터 알파벳 순서대로 비교
+	    - var a = "abc", b = "bcd";
+	      document.write((a <= b) + "<br>"); // false return
+	- 숫자와 문자를 비교시 항상 false를 return
+	- 삼항연산자
+	    - 표현식 ? 반환값1 : 반환값2
+	    - 표현식이 참이면 반환값1을 return, 거짓이면 반환값2를 return
+	    - var x = 3, y = 5;
+	    - if / else 문 
+	      if (x > y){
+	    	    return x
+	      }else{	
+		    return y} 
+	    - 삼항연산자
+	      (x > y) ? x : y
+	- typeof 연산자
+	    - 피연산자의 타입을 반환
+	    - typeof NaN        // number
+	      typeof undefined  // undefined
+	      typeof 함수명 // function
+	- void연산자
+	    - void 연산자는 언제나 undefined 값만을 반환
+	    - 일반적으로 링크를 눌렀을때 동작하지 않을때 사용
+	    - <a href="javascript:void(0)">이 링크는 동작하지 않습니다.</a>
+
+명
+- HTML 태그: Element
+- HTML 속성: Attribute

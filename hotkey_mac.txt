@@ -1,0 +1,3 @@
+developer tools: option + command + J
+new file: ctr + option + command + n
+open terminal: ctr + `

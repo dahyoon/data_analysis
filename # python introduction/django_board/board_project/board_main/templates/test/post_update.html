@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<style>
+    .edit1 {font-family: 'IBM Plex Sans KR', sans-serif; color: #808080}
+    .edit2 {font-family: 'IBM Plex Sans KR', sans-serif; color: #F18800}
+    .edit3 {font-family: 'IBM Plex Sans KR', sans-serif; color: #808080; background-color: white; border: 1px solid grey}
+</style>
+<form class="edit1" action = "http://localhost:8000/author_update" method = "POST">
+    {% csrf_token %}
+    이름: <input type = "text" name = "my_name" value = "{{author.name}}" class="edit2" ><br>
+    이메일: <input type = "text" name = "my_email" value = "{{author.email}}" class="edit2"><br>
+    비밀번호: <input type = "text" name = "my_password" value = "{{author.password}}" class="edit2"><br>
+    <input type = "submit" value = "수정하기" class ="edit3">
+</form>
+{% endblock %}
