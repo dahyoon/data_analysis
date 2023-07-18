@@ -1,6 +1,8 @@
-
+import os
 import numpy as np
 from pandas import DataFrame
+from math import sqrt
+from scipy.stats import t
 from sklearn.impute import SimpleImputer
 
 # 결측치경계 구하기 함수
@@ -85,3 +87,7 @@ def clearStopwords(nouns, stopwords_file_path="wordcloud/stopwords-ko.txt"):
             data_set.append(v)
 
     return data_set
+
+def get_confidence_interval(data, clevel=0.95)
+    n = len(data)
+
