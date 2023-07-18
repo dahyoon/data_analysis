@@ -88,7 +88,7 @@ def clearStopwords(nouns, stopwords_file_path="wordcloud/stopwords-ko.txt"):
 
     return data_set
 
-def get_confidence_interval(data, clevel=0.95)
+def get_confidence_interval(data, clevel=0.95):
     n = len(data)                               # 샘플 사이즈
     dof = n - 1                                 # 자유도
     sample_mean = data.mean()                   # 표본 평균
