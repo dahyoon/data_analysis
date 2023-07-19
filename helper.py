@@ -100,3 +100,4 @@ def get_confidence_interval(data, clevel=0.95):
                         scale = sample_std_error)
     return (cmin, cmax)
 
+def equal_variance_test(*amy):
