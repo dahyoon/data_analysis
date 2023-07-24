@@ -2,7 +2,7 @@ import os
 import numpy as np
 from pandas import DataFrame, MultiIndex, concat
 from math import sqrt
-from scipy.stats import t
+from scipy.stats import t, pearsonr, spearmanr
 from sklearn.impute import SimpleImputer
 from scipy.stats import shapiro, normaltest, ks_2samp, bartlett, fligner, levene, chi2_contingency
 
@@ -89,18 +89,6 @@ def clearStopwords(nouns, stopwords_file_path="wordcloud/stopwords-ko.txt"):
 
     return data_set
 
-def get_confidence_interval(data, clevel=0.95):
-    n = len(data)                               # 샘플 사이즈
-    dof = n - 1                                 # 자유도
-    sample_mean = data.mean()                   # 표본 평균
-    sample_std = data.std(ddof = 1)             # 표본 표준 편차
-    sample_std_error = sample_std / sqrt (n)    # 표본 표준 오차
-
-    # 신뢰 구간
-    cmin, cmax = t.interval(clevel, dof, loc = sample_mean,
-                        scale = sample_std_error)
-    return (cmin, cmax)
-
 def get_confidence_interval(data, clevel = 0.95):
     n = len(data)                           # 샘플 사이즈
     dof = n - 1                             # 자유도
@@ -185,4 +173,42 @@ def independence_test(*any):
     return df
 
 def all_test(*any):
-    return concat([normality_test(*any), equal_variance_test(*any), independence_test(*any)])
+    return concat([normality_test(*any), 
+                   equal_variance_test(*any), 
+                   independence_test(*any)])
+
+def pearson_r(df):
+    names = df.columns
+    pv = 0.05
+    data = []
+    for i in range(len(names)):
+        # 기본적으로 i 다음 위치를 의미하지만 i가 마지막 인덱스일 경우 0으로 설정
+        j = i + 1 if i < len(names) - 1 else 0
+        fields = names[i] + 'vs' + names[j]
+        s, p = pearsonr(df[names[i]], df[names[j]])
+        result = p < pv
+        data.append({'fields':fields,
+                     'statistic':s,
+                     'pvalue':p,
+                     'result':result})
+    rdf = DataFrame(data)
+    rdf.set_index('fields', inplace=True)
+    return rdf
+
+def spearman_r(df):
+    names = df.columns
+    pv = 0.05
+    data = []
+    for i in range(len(names)):
+        # 기본적으로 i 다음 위치를 의미하지만 i가 마지막 인덱스일 경우 0으로 설정
+        j = i + 1 if i < len(names) - 1 else 0
+        fields = names[i] + ' vs ' + names[j]
+        s, p = spearmanr(df[names[i]], df[names[j]])
+        result = p < pv
+        data.append({'fields':fields,
+                     'statistic':s,
+                     'pvalue:':p,
+                     'result':result})
+    rdf = DataFrame(data)
+    rdf.set_index('fields', inplace=True)
+    return rdf
