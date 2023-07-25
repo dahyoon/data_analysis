@@ -185,6 +185,10 @@
         # else:
             # print("요청하신 문자는 %d 번째에 있습니다." % result)
 
+# 열 종류 확인
+    # 열.isnumeric() - 열이 숫자(정수, 실수 다 포함)인지 아닌지 확인 (True/False)
+    # 열.isdigit() - 열이 문자열인지 아닌지 확인 (True/False)
+
 # 문자열 대소문자 변경
     # st.upper() / st.lower()
         # a = "hello"
