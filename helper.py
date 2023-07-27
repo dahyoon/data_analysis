@@ -3,7 +3,7 @@
 @Author: 이광호(leekh4232@gmail.com)
 """
 import numpy as np
-from pandas import DataFrame, MultiIndex, concat
+from pandas import DataFrame, MultiIndex, concat, merge
 from math import sqrt
 from scipy.stats import t, pearsonr, spearmanr
 from sklearn.impute import SimpleImputer
@@ -11,6 +11,8 @@ from scipy.stats import shapiro, normaltest, ks_2samp, bartlett, fligner, levene
 from statsmodels.formula.api import ols
 import re
 from statsmodels.stats.outliers_influence import variance_inflation_factor
+from sklearn.preprocessing import StandardScaler
+from pca import pca
 
 
 def getIq(field):
@@ -632,3 +634,13 @@ def scalling(df, yname):
     y_train_std_df = DataFrame(y_train_std, columns=y_train.columns)
 
     return (x_train_std_df, y_train_std_df)
+
+def get_best_features(x_train_std_df):
+    pca_model = pca()
+    fit = pca_model.fit_transform(x_train_std_df)
+    topfeat_df = fit['topfeat']
+    
+    best = topfeat_df.query("type=='best'")
+    feature = list(set(list(best['feature'])))
+    
+    return (feature, topfeat_df)
