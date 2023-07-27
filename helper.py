@@ -118,12 +118,8 @@ def setCategory(df, fields=[]):
 
             # 인덱스 이름순으로 정렬된 값의 종류별로 반복 처리
             for ii, vv in enumerate(list(vc.index)):
-                # 일련번호값 생성
-                vnum = ii + 1
-                # print(vv, " -->", vnum)
-
                 # 일련번호값으로 치환
-                cdf.loc[cdf[field_name] == vv, field_name] = vnum
+                cdf.loc[cdf[field_name] == vv, field_name] = ii
 
             # 해당 변수의 데이터 타입을 범주형으로 변환
             cdf[field_name] = cdf[field_name].astype('category')
