@@ -782,3 +782,4 @@ def my_logit(data, y, x, subset=None):
     logit_result.odds_rate_df = odds_rate_df
 
     return logit_result
+    
