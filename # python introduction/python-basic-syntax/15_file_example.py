@@ -1,13 +1,13 @@
-# # open: file 시스템 입출력 라이브러리
-#     # mode(w, r, a)을 갖고 있다
-#         # w: write(덮어쓰기), r:read. a:추가
-#     # open을 했을 떄 해당 파일명이 없으면 자동생성한다.
+# open: file 시스템 입출력 라이브러리
+    # mode(w, r, a)을 갖고 있다
+        # w: write(덮어쓰기), r:read. a:추가
+    # open을 했을 떄 해당 파일명이 없으면 자동생성한다.
 
 
 
 
-# # f = open("test.txt", "w")
-# # f.close()
+# f = open("test.txt", "w")
+# f.close()
 
 
 
