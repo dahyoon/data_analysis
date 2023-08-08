@@ -351,7 +351,7 @@ def allTest(*any, isPrint=True):
     -------
     - df: 검정 결과 데이터 프레임
     """
-    cc = concat([normalityTest(*any), equalVarianceTest(*any), independenceTest(*any)])
+    cc = concat([normalityTest(*any, isPrint=False), equalVarianceTest(*any, isPrint=False), independenceTest(*any, isPrint=False)])
 
     if isPrint:
         prettyPrint(cc)
@@ -756,7 +756,7 @@ class LogitResult:
     def odds_rate_df(self, value):
         self._odds_rate_df = value
 
-def myOls(data, y, x, subset=None):
+def myLogit(data, y, x, subset=None):
     """
     로지스틱 회귀분석을 수행한다.
 
