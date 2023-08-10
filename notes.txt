@@ -136,6 +136,17 @@ vscode setting
 	- 한글(글꼴도) 지원 안함 - linux 명령어를 써서 직접 설치 필요
 
 8/10 선형회귀:
-- 회귀형 분석은 보통 카테고리(범주형) 데이터는 안 한다
+- 회귀형 분석은 보통 카테고리(범주형) 데이터는 숫자로 변환하여 종속변수와
+연관성이 있는지 검증한 후 (샤피로, 등등) 한다.
+- 회귀 분석은 어떤 독립 변수가(들이) 종속 변수에 가장 영향을 주는지 알아보는 것이 목적
 - 샤피로 검정는 데이터(표본)의 수가 50 미만인 경우만 사용한다
 - Kolmogorov Smirnov Test은 데이터(표본)의 수가 50 기상인 경우 사용
+- PCA 분석은 무조건 표준화 해야 된다
+- boxplot을 그릴 경우 data=데이터프레임 으로 주면 알아서 범주형 데이터는 빼고 돌려줌
+	- boxplot을 하나씩(컬럼별) 할 경우
+- 선형회귀 - 다이아몬드예시.ipynb 마지막에 잔차 분석도 해야 됨
+(그런데 시간이 너무 오래 걸려서 수업에서는 안 함)
+- ols (ordinary least squares) regression이란?
+	- : a method that allows us to find a line that best describes 
+	the relationship b/w one or more predictor variables and a 
+	response variable.
