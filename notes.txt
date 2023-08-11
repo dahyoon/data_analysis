@@ -150,3 +150,6 @@ vscode setting
 	- : a method that allows us to find a line that best describes 
 	the relationship b/w one or more predictor variables and a 
 	response variable.
+
+8/11 금:
+- ols 분석 하기 전까지는 분석이 아니라 데이터 전처리이다
