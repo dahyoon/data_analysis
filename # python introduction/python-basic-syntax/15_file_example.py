@@ -160,7 +160,10 @@
 # searchDir = '/Users/dayoonz/Desktop/안다윤'
 # searchRecur(searchDir)
 
+# 파일 이름 변경
 
+# import os
+# os.rename('current_filename', 'new_filename')
 
 
 
