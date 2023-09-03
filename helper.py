@@ -1122,9 +1122,11 @@ def getTrend(x, y, degree=2, value_count=100):
     #[ a, b, c ] ==> ax^2 + bx + c
     coeff = np.polyfit(x, y, degree)
     
+    # x가 리스트로 들어온 경우
     if type(x) == 'list':
         minx = min(x)
         maxx = max(x)
+    # x가 데이터프레임의 필드, 즉 시리즈로 온 경우
     else:
         minx = x.min()
         maxx = x.max()
