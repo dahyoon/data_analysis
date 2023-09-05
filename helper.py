@@ -449,7 +449,7 @@ def spearman_r(df, isPrint=True):
         return rdf
 
 class RegMetric:
-    def __init__(self, y, y_pred):
+    def __init__(self, y, y_pred):    # y = 관측치, y_pred = 예측치
         # 설명력
         self._r2 = r2_score(y, y_pred)
         # 평균절대오차
@@ -461,15 +461,15 @@ class RegMetric:
         
         # 평균 절대 백분오차 비율
         if type(y) == Series:
-            self._mape = np.mean(np.abs((y.values - y_pred) / y.values) * 100)
+            self._mape = np.mean(np.abs((y.values - y_pred) / y.values)) * 100
         else:
-            self._mape = np.mean(np.abs((y - y_pred) / y) * 100)
+            self._mape = np.mean(np.abs((y - y_pred) / y)) * 100
         
         # 평균 비율 오차
         if type(y) == Series:   
-            self._mpe = np.mean((y.values - y_pred) / y.values * 100)
+            self._mpe = np.mean((y.values - y_pred) / y.values) * 100
         else:
-            self._mpe = np.mean((y - y_pred) / y * 100)
+            self._mpe = np.mean((y - y_pred) / y) * 100
 
     @property
     def r2(self):

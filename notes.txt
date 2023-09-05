@@ -170,3 +170,6 @@ vscode setting
 
 혼돈 행렬에 대한 비율 값 - 설명력을 대신 함
 - 참고 문헌 - 시카고 규칙 따르기
+
+getter-setter 설치 방법:
+- ctrl + shift 누르면 getter, setter 추가됨 (전에 extension 설치 해서 되어있을 것임)
