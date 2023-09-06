@@ -12,6 +12,7 @@ from matplotlib import pyplot as plt
 
 from pandas import DataFrame, MultiIndex, concat, DatetimeIndex, Series
 
+from scipy import stats
 from scipy.stats import t, pearsonr, spearmanr
 from scipy.stats import shapiro, normaltest, ks_2samp, bartlett, fligner, levene, chi2_contingency
 
@@ -26,6 +27,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler,PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import confusion_matrix, roc_curve, roc_auc_score, accuracy_score, recall_score, precision_score, f1_score, r2_score, mean_absolute_error, mean_squared_error
+
+
+plt.rcParams["font.family"] = 'Malgun Gothic'
+plt.rcParams["font.size"] = 16
+plt.rcParams['axes.unicode_minus'] = False
 
 
 def prettyPrint(df, headers="keys", tablefmt="psql", numalign="right", title="value"):
@@ -449,7 +455,7 @@ def spearman_r(df, isPrint=True):
         return rdf
 
 class RegMetric:
-    def __init__(self, y, y_pred):    # y = 관측치, y_pred = 예측치
+    def __init__(self, y, y_pred):
         # 설명력
         self._r2 = r2_score(y, y_pred)
         # 평균절대오차
@@ -461,15 +467,15 @@ class RegMetric:
         
         # 평균 절대 백분오차 비율
         if type(y) == Series:
-            self._mape = np.mean(np.abs((y.values - y_pred) / y.values)) * 100
+            self._mape = np.mean(np.abs((y.values - y_pred) / y.values) * 100)
         else:
-            self._mape = np.mean(np.abs((y - y_pred) / y)) * 100
+            self._mape = np.mean(np.abs((y - y_pred) / y) * 100)
         
         # 평균 비율 오차
         if type(y) == Series:   
-            self._mpe = np.mean((y.values - y_pred) / y.values) * 100
+            self._mpe = np.mean((y.values - y_pred) / y.values * 100)
         else:
-            self._mpe = np.mean((y - y_pred) / y) * 100
+            self._mpe = np.mean((y - y_pred) / y * 100)
 
     @property
     def r2(self):
@@ -521,6 +527,12 @@ class RegMetric:
 
 class OlsResult:
     def __init__(self):
+        self._x_train = None
+        self._y_train = None
+        self._train_pred = None
+        self._x_test = None
+        self._y_test = None
+        self._test_pred = None
         self._model = None
         self._fit = None
         self._summary = None
@@ -532,6 +544,54 @@ class OlsResult:
         self._intercept = None
         self._trainRegMetric = None
         self._testRegMetric = None
+
+    @property
+    def x_train(self):
+        return self._x_train
+
+    @x_train.setter
+    def x_train(self, value):
+        self._x_train = value
+
+    @property
+    def y_train(self):
+        return self._y_train
+
+    @y_train.setter
+    def y_train(self, value):
+        self._y_train = value
+
+    @property
+    def train_pred(self):
+        return self._train_pred
+
+    @train_pred.setter
+    def train_pred(self, value):
+        self._train_pred = value
+
+    @property
+    def x_test(self):
+        return self._x_test
+
+    @x_test.setter
+    def x_test(self, value):
+        self._x_test = value
+
+    @property
+    def y_test(self):
+        return self._y_test
+
+    @y_test.setter
+    def y_test(self, value):
+        self._y_test = value
+
+    @property
+    def test_pred(self):
+        return self._test_pred
+
+    @test_pred.setter
+    def test_pred(self, value):
+        self._test_pred = value
 
     @property
     def model(self):
@@ -939,7 +999,7 @@ def myLogit(data, y, x, subset=None):
     # 혼동행렬
     cm = confusion_matrix(df[y], df['예측결과'])
     tn, fp, fn, tp = cm.ravel()
-    cmdf = DataFrame([[tn, tp], [fn, fp]], index=['True', 'False'], columns=['Negative', 'Positive'])
+    cmdf = DataFrame([[tn, fn], [fp, tp]], index=['True', 'False'], columns=['Negative', 'Positive'])
 
     # RAS
     ras = roc_auc_score(df[y], df['예측결과'])
@@ -1122,11 +1182,9 @@ def getTrend(x, y, degree=2, value_count=100):
     #[ a, b, c ] ==> ax^2 + bx + c
     coeff = np.polyfit(x, y, degree)
     
-    # x가 리스트로 들어온 경우
     if type(x) == 'list':
         minx = min(x)
         maxx = max(x)
-    # x가 데이터프레임의 필드, 즉 시리즈로 온 경우
     else:
         minx = x.min()
         maxx = x.max()
@@ -1194,9 +1252,9 @@ def regplot(x_left, y_left, y_left_pred=None, left_title=None, x_right=None, y_r
     plt.show()
     plt.close()
     
-def ml_ols(data, xnames, yname, degree=1, test_size=0.25, scalling=False, random_state=777):
+def ml_ols(data, xnames, yname, degree=1, test_size=0.25, use_scalling=False, random_state=777):
     # 표준화 설정이 되어 있다면 표준화 수행
-    if scalling:
+    if use_scalling:
         data = scalling(data)
         
     # 독립변수 이름이 문자열로 전달되었다면 콤마 단위로 잘라서 리스트로 변환
@@ -1207,7 +1265,7 @@ def ml_ols(data, xnames, yname, degree=1, test_size=0.25, scalling=False, random
     x = data.filter(xnames)
     
     # 종속변수 추출
-    y = data.filter([yname])
+    y = data[yname]
     
     # 2차식 이상으로 설정되었다면 차수에 맞게 변환
     if degree > 1:
@@ -1232,10 +1290,173 @@ def ml_ols(data, xnames, yname, degree=1, test_size=0.25, scalling=False, random
     result.coef = fit.coef_
     result.intercept = fit.intercept_
     
+    result.x_train = x_train.copy()
+    result.y_train = y_train.copy()
+    result.train_pred = result.fit.predict(result.x_train)
+    
     if x_test is not None and y_test is not None:
-        result.setRegMetric(y_train, fit.predict(x_train), y_test, fit.predict(x_test))
+        result.x_test = x_test.copy()
+        result.y_test = y_test.copy()
+        result.test_pred = result.fit.predict(result.x_test)
+        result.setRegMetric(y_train, result.train_pred, y_test, result.test_pred)
     else:
-        result.setRegMetric(y_train, fit.predict(x_train))
+        result.setRegMetric(y_train, result.train_pred)
+        
+    # 결과표 함수 호출
+    x_train[yname] = y_train
+    result.table = get_ols_table(x_train, xnames, yname, result.intercept, result.coef, result.train_pred)
         
     return result
+
+
+def get_ols_table(data, xnames, yname, intercept, coef, predict):
+    # 독립변수 이름이 문자열로 전달되었다면 콤마 단위로 잘라서 리스트로 변환
+    if type(xnames) == str:
+        xnames = xnames.split(',')
+            
+    # 독립변수 추출
+    x = data.filter(xnames)
+        
+    # 종속변수 추출
+    y = data[yname]
     
+    # 절편과 계수를 하나의 배열로 결합
+    params = np.append(intercept, coef)    
+    
+    # 상수항 추가하기
+    designX = x.copy()
+    designX.insert(0, '상수', 1)   
+    
+    # 행렬곱 구하기
+    dot = np.dot(designX.T,designX)
+    
+    # 행렬곱에 대한 역행렬 
+    inv = np.linalg.inv(dot)  
+    
+    # 역행렬의 대각선 반환  
+    dia = inv.diagonal()
+    
+    # 평균 제곱오차 구하기
+    MSE = (sum((y-predict)**2)) / (len(designX)-len(designX.iloc[0]))
+    
+    # 표준오차
+    se_b = np.sqrt(MSE * dia)
+    
+    # t값
+    ts_b = params / se_b
+    
+    # p값
+    p_values = [2*(1-stats.t.cdf(np.abs(i),(len(designX)-len(designX.iloc[0])))) for i in ts_b]
+    
+    # vif
+    vif = []
+    
+    # 훈련데이터에 대한 독립변수와 종속변수를 결합한 완전한 데이터프레임 준비
+    data = x.copy()
+    data[yname] = y
+    # print(data)
+    #print("-" * 30)
+
+    for i, v in enumerate(x.columns):
+        j = list(data.columns).index(v)
+        vif.append(variance_inflation_factor(data, j))
+    
+    # 결과표 구성하기
+    table = DataFrame({
+        "종속변수": [yname] * len(x.columns),
+        "독립변수": x.columns,
+        "B": coef,
+        "표준오차": se_b[1:],
+        "β": 0,
+        "t": ts_b[1:],
+        "유의확률": p_values[1:],
+        "VIF": vif,
+    })
+    
+    return table
+
+
+def tf_result_plot(result, figsize=(15, 5), dpi=150):
+    # 학습 결과에 대한 데이터프레임 생성
+    result_df = DataFrame(result.history)
+    result_df['epochs'] = result_df.index+1
+    result_df.set_index('epochs', inplace=True)
+    
+    # 학습 결과 그래프의 컬럼명
+    column_names = result_df.columns
+    
+    # 학습데이터에 대한 필드이름
+    train_column_name = [column_names[0], column_names[1]]
+    
+    # 검증데이터에 대한 필드이름
+    test_column_name = [column_names[2], column_names[3]]
+    
+    # 학습 결과 그래프
+    fig, ax = plt.subplots(1, 2, figsize=figsize, dpi=dpi)
+    
+    for i, v in enumerate(ax):
+        sb.lineplot(x=result_df.index, y=train_column_name[i], data=result_df, color='blue', label=train_column_name[i], ax=v)
+        sb.lineplot(x=result_df.index, y=test_column_name[i], data=result_df, color='orange', label=test_column_name[i], ax=v)
+        v.set_title(train_column_name[i])
+        v.set_xlabel('ephocs')
+        v.set_ylabel(train_column_name[i])
+        v.grid()
+        v.legend()
+    
+    plt.show()
+    plt.close()
+    
+    return result_df
+
+def tf_logit_result(model, fit, x, y):    
+    # 예측값 생성
+    pred_bool = model.predict(x).flatten() > 0.5
+    pred = pred_bool.astype(int)
+    
+    # 혼동행렬
+    cm = confusion_matrix(y, pred)
+    tn, fp, fn, tp = cm.ravel()
+    cmdf = DataFrame([[tn, fn], [fp, tp]], index=['True', 'False'], columns=['Negative', 'Positive'])
+
+    # RAS
+    ras = roc_auc_score(y, pred)
+
+    # 위양성율, 재현율, 임계값(사용안함)
+    fpr, tpr, thresholds = roc_curve(y, pred)
+
+    # 정확도
+    acc = accuracy_score(y, pred)
+
+    # 정밀도
+    pre = precision_score(y, pred)
+
+    # 재현율
+    recall = recall_score(y, pred)
+
+    # F1 score
+    f1 = f1_score(y, pred)
+
+    # 위양성율
+    fallout = fp / (fp + tn)
+
+    # 특이성
+    spe = 1 - fallout
+
+    result_df = DataFrame({'정확도(Accuracy)':[acc], '정밀도(Precision)':[pre], '재현율(Recall, TPR)':[recall], '위양성율(Fallout, FPR)': [fallout], '특이성(Specificity, TNR)':[spe], 'RAS': [ras], 'f1_score':[f1]})
+
+    # 모델 가중치와 편향 얻기
+    weights, bias = model.layers[1].get_weights()
+    
+    # 오즈비 계산
+    odds_ratio = np.exp(weights[0])
+
+    logit_result = LogitResult()
+    logit_result.model = model
+    logit_result.fit = fit
+    logit_result.summary = model.summary()
+    #logit_result.prs = prs
+    logit_result.cmdf = cmdf
+    logit_result.result_df = result_df
+    logit_result.odds_rate_df = odds_ratio
+    
+    return logit_result
