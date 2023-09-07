@@ -156,20 +156,13 @@ vscode setting
 - 시간이 오래 걸리는 시각화는 파일 저장해 놓으면 좋음:
 	- plt.savefig('파일명.png', dpi= )
 
-
-
-
-연구 개유 및 목적 - 뉴스기사 research한 것들 설명
-범위 및 변수 설정
-1) 연구 주제 및 범위 - 범위 및 분석 방법 - 상관 분석 등
-2) 변수 설정 - 구분, 변수명, 내용, 출처
-3) 분석 수행 및 결과
-- 분석 내용: 데이터 분포 확인, 정규성, 등분산성, 독립성 검증, 3개의 집단의 일원분산 분석, 사후 분석
-- 결과 보고: (식)
-
-
-혼돈 행렬에 대한 비율 값 - 설명력을 대신 함
-- 참고 문헌 - 시카고 규칙 따르기
-
 getter-setter 설치 방법:
 - ctrl + shift 누르면 getter, setter 추가됨 (전에 extension 설치 해서 되어있을 것임)
+
+8/29:
+- scikit-learn은 utility의 기능을 습득하는 과정이다
+	- from sklearn.impute import `SimpleImputer`
+	- from sklearn.model_selection import `train_test_split`
+    - from sklearn.preprocessing import `StandardScaler`,`PolynomialFeatures`
+	- from sklearn.linear_model import `LinearRegression`
+	- from sklearn.metrics import `confusion_matrix`, `roc_curve`, `roc_auc_score`, `accuracy_score`, `recall_score`, `precision_score`, `f1_score`, `r2_score`, `mean_absolute_error`, `mean_squared_error`
