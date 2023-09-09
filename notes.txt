@@ -166,3 +166,21 @@ getter-setter 설치 방법:
     - from sklearn.preprocessing import `StandardScaler`,`PolynomialFeatures`
 	- from sklearn.linear_model import `LinearRegression`
 	- from sklearn.metrics import `confusion_matrix`, `roc_curve`, `roc_auc_score`, `accuracy_score`, `recall_score`, `precision_score`, `f1_score`, `r2_score`, `mean_absolute_error`, `mean_squared_error`
+- 회귀분석 수행 시 1차를 사용할지 2차를 사용할지 판단하는 기준은 산점도 그래프를 그려봐야 된다 
+	- 점들의 배치가 직선/곡선인지 판단 후 사용여부 결정
+- 발표 용 파일 저장하기 (산점도 그래프 + 추세선)
+	- helper.regplot(... save_path="manhattan_%s.png" % 파일이름)
+
+t-값
+- t-값의 절대값이 클수록 p-값은 작아지며, 귀무 가설에 대한 증거가 커집니다
+- 보통 t-검정은 모집단 평균(2-표본 t) 간 유의한 차이 또는 모집단 평균과 귀무 가설에서의 값(1-표본 t) 간 유의한 차이를 찾기 위해 실시
+- t-값은 표본 데이터 변동에 비례한 차이의 크기를 측정
+- 다르게 표현하면 T는 계산된 차이를 표준 오차 단위로 나타낸 것으로, 
+- T의 크기가 클수록 귀무 가설에 대한 증거가 큼 -> 즉, 유의한 차이가 있다는 증거가 더 명확
+- 반면 T가 0에 가까울수록 유의미한 차이가 없을 가능성이 커짐
+
+
+VIF값
+- VIF (Variance Inflation Factor)란, `분산 팽창 인수`라고 합니다
+    - 이 값은 다중회귀분석에서 독립변수가 `다중 공산성(Multicollnearity)`의 `문제를 갖고 있는지 판단`하는 기준
+	- 주로 `10보다 크면 그 독립변수는 다중공산성이 있다`고 말함
