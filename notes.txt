@@ -202,10 +202,18 @@ VIF값
     - 이 값은 다중회귀분석에서 독립변수가 `다중 공산성(Multicollnearity)`의 `문제를 갖고 있는지 판단`하는 기준
 	- 주로 `10보다 크면 그 독립변수는 다중공산성이 있다`고 말함
 
-pip command
-- pip install --upgrade package_name
+pip command *** 맥은 반드시 pip가 아닌 pip3로 해야 됨
+- pip3 install --upgrade package_name
 	: installs package_name to the latest version
-- pip show package_name
+- pip3 show package_name
 	: shows information about package_name
-- pip list
+- pip3 list
 	: shows lists of existing packages
+- python3 -m pip install --upgrade pip
+	: pip upgrade
+
+9/13
+- 모델의 성능을 어떻게 향상시켰는가 - 인터뷰 때 포커스를 맞춰야 함
+
+9/14
+- visual studio에서 변수값들 확인: Variables(+Code 버튼 있는 상단 맨 오른쪽에 있음)

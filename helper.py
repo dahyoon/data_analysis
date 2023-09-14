@@ -5,7 +5,7 @@
 import sys
 import numpy as np
 import seaborn as sb
-from pca import pca
+#from pca import pca
 from math import sqrt
 from tabulate import tabulate
 from matplotlib import pyplot as plt
@@ -29,8 +29,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import confusion_matrix, roc_curve, roc_auc_score, accuracy_score, recall_score, precision_score, f1_score, r2_score, mean_absolute_error, mean_squared_error
 
 
-plt.rcParams["font.family"] = 'Malgun Gothic'
-plt.rcParams["font.size"] = 16
+#plt.rcParams["font.family"] = 'AppleGothic' if sys.platform == 'darwin' else 'Malgun Gothic'
+plt.rcParams["font.size"] = 14
 plt.rcParams['axes.unicode_minus'] = False
 
 
@@ -884,15 +884,15 @@ def scalling(df, yname=None):
 
     return result
 
-def getBestFeatures(x_train_std_df):
-    pca_model = pca()
-    fit = pca_model.fit_transform(x_train_std_df)
-    topfeat_df = fit['topfeat']
+# def getBestFeatures(x_train_std_df):
+#     pca_model = pca()
+#     fit = pca_model.fit_transform(x_train_std_df)
+#     topfeat_df = fit['topfeat']
     
-    best = topfeat_df.query("type=='best'")
-    feature = list(set(list(best['feature'])))
+#     best = topfeat_df.query("type=='best'")
+#     feature = list(set(list(best['feature'])))
     
-    return (feature, topfeat_df)
+#     return (feature, topfeat_df)
 
 class LogitResult:
     def __init__(self):
