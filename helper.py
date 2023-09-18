@@ -29,7 +29,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import confusion_matrix, roc_curve, roc_auc_score, accuracy_score, recall_score, precision_score, f1_score, r2_score, mean_absolute_error, mean_squared_error
 
 
-#plt.rcParams["font.family"] = 'AppleGothic' if sys.platform == 'darwin' else 'Malgun Gothic'
+plt.rcParams["font.family"] = 'AppleGothic' if sys.platform == 'darwin' else 'Malgun Gothic'
 plt.rcParams["font.size"] = 14
 plt.rcParams['axes.unicode_minus'] = False
 
