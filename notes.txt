@@ -248,13 +248,17 @@ getter-setter 설치 방법:
 			if v == 'category':
 				cnames.append(df.columns[i])	
 		cnames
-	- countplot을 확인하여 각 명목형 변수들의 데이터 분포가 비슷하게 
-	되어있으면 (-> '표준 정규 분포' 또는 '표준분포'로 되어 있다) 그냥 써도 됨
-		- 아니면 표준화 하는 것이 이상적
-	- barplot (양의 결과, 음의 결과 -> 표준편차를 놓고 그린 것이기 떄문에 이런 결과나 나온 것)
-		- 표준 편차 전의 데이터로 한 경우나 minmaxscaler를 사용했을 경우 그래프가 밑으로(음의 수)
-			내려가는 경우는 없을 것이다.
-		
+ 9/8 소프트맥스 (다항분류)
+ - .unique() 함수 - 고유한 값만 반환
+	- .value_counts() 함수 해도 됨
+- 종속변수 라벨링
+    - `cat.rename_categories({'값1': 0, '값2': 1, '값3': 2, ...})`
+    - `.np.where(condition, x, y)`함수 활용해도 됨
+        - condition -> 조건
+        - x -> condition이 true면 x반환
+        - y -> condition이 false면 y반환
+- numpy.argmax(값들, axis= -1) - 가장 큰 값의 인덱스 출력하는 함수
+	- axis = -1 은 축의 방향
 
 
 
