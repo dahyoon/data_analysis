@@ -293,3 +293,6 @@ pip command *** 맥은 반드시 pip가 아닌 pip3로 해야 됨
 
 9/14
 - visual studio에서 변수값들 확인: Variables(+Code 버튼 있는 상단 맨 오른쪽에 있음)
+
+
+hello
