@@ -248,6 +248,28 @@ getter-setter 설치 방법:
 			if v == 'category':
 				cnames.append(df.columns[i])	
 		cnames
+- 순서 있는 범주와 순서 없는 범주
+	- (F_데이터마이닝, 3_Tensorflow, 연습문제1_다풀(이항분류).ipynb) 참조
+		data_pre2 = data_pre1.copy()
+		data_pre2
+		# 순서 없는 범주 설정
+		ctype = ['sex', 'Recur', 'stage', 'smoking', 'obesity']
+		for a in ctype:
+			data_pre2[a] = data_pre2[a].astype('category')
+		data_pre2.dtypes
+
+		# 순서 있는 범주 설정
+		n_ctype = ['post.CA19.9.binary', 'post.CA19.9.3grp']
+		n_cat_dict = {}
+		for a in n_ctype:
+			df = DataFrame(data_pre2[a].value_counts().sort_index())
+			n_cat_dict[a] = list(df.index)
+			print('n_cat_dict[%s]: ' % a, n_cat_dict[a])
+
+			cat_type = CategoricalDtype(categories=n_cat_dict[a], ordered = True)
+			data_pre2[a] = data_pre2[a].astype(cat_type)
+		data_pre2.dtypes
+	
  9/8 소프트맥스 (다항분류)
  - .unique() 함수 - 고유한 값만 반환
 	- .value_counts() 함수 해도 됨
@@ -259,6 +281,75 @@ getter-setter 설치 방법:
         - y -> condition이 false면 y반환
 - numpy.argmax(값들, axis= -1) - 가장 큰 값의 인덱스 출력하는 함수
 	- axis = -1 은 축의 방향
+- MinMaxScaler로 표준화한 데이터들을 학습하는 것이 StandardScaler로 표준화한 
+	데이터들을 학습하는 것보다 학습 속도가 더 빠르다
+
+9/11
+- pip 패키지 (보안문제로 회사 내에서 pip 설치가 불가능할 때 pip 설치 방법 - 추후 보안부서에 문의)
+	1) 현재 설치된 목록을 텍스트 파일로 저장
+		- pip3 freeze > 텍스트파일경로
+		- 패키지 목록을 백업하는 것
+	2) 텍스트파일에 명시된 패키지들을 일괄 설치 
+		- pip3 install --upgrade -r 텍스트파일경로
+		- 단, 이 방법은 네트워크가 가능한 환경에서만 동작
+	3) 외부컴퓨터에서 pip를 통해 패키지들을 특정 폴더에 다운로드받기
+		- pip3 download -d 저장될폴더경로 -r 텍스트파일경로
+		- ex) pip download -d ./hello -r pypackage.txt
+	- 다운로드 후 패키지 목록이 백업된 텍스트 파일을 패키지 폴더안에 함께 보관
+		-> 이 폴더를 통째로 설치하고자하는 PC에 가져감
+	- 설치시에는 패키지와 텍스트파일이 포함된 폴더 위치에서 명령프롬프트를 실행
+		- pip install --no-index --find-links -r 텍스트파일경로
+		- ex) pip install --no-index --find-links -r pypackage.txt
+- 정확도, 손실률, 오즈비 등 값들이 컴퓨터마다 다르게 나오는 이유는 train_test_split할 때,
+	컴퓨터의 CPU마다 다르게 훈련 데이터와 검증 데이터를 나누기 때문에 다르게 입력된 값들에 따라서
+	학습 결과 값들이 미세하게 다를 것이다
+- Google Colab
+	- docker와 비슷
+	- 하나의 리눅스와 같다
+	- 파일 하나가 하나의 이미지로 저장됨
+	- 한글 사용 시 한글 글꼴을 깔아줘야 됨 -> 리눅스 명령어로 한글 글꼴 다운로드
+		- !sudo apt-get install -y fonts-nanum
+		- !sudo fc-cache -fv
+		- !rm ~/.cache/matplotlib -rf
+		-> 이렇게 입력 후 실행하여 한글글꼴을 다운로드한 후
+		- from matplotlib import font_manager as fm
+		- import matplotlib.pyplot as plt
+		- fe = fm.FrontEntry(
+			fname = r'/usr/share/fonts/truetype/nanum/NanumGothic.ttf', # .ttf 파일이 저장되어 있는 경로
+			name = 'NanumGothic') 									# 이 폰트에 원하는 이름 설정
+		- fm.fontManager.ttflist.insert(0, fe)						# Matplotlib에 폰트 추가
+		- plt.rcParams.update({'font.size': 18, 'font.family': 'NanumGothic'})	# 폰트 설정
+	- 왼쪽 메뉴에 '폴더그림'을 선택하면 run time한다고 한 후 뜸
+	- 현 디렉토리는 'content' 폴더에 위치
+	- 해야할 것들:
+		- google colab을 열면 가장 먼저 사본을 '저장'부터 하고 시작하기 (drive나 github에)
+		- 그 후 저장한 파일을 열고 무조건 위측 메뉴에 '런타임' > '런타임 유형 변경' > 'T4 GPU' 선택
+			- 런타임 유형을 변경하는 건 컴퓨터 종류를 선택하는 것
+				- TPU: 구글에서 만든 tensorflow 전용 GPU
+			- 런타임 유형을 바꿔버리면 처음서부터 실행을 다시 해야됨 (컴퓨터 바꾸는 것이랑 비슷)
+			- -> 그래서 이것부터 해야하는 것
+			- 비활성화 되어있는 A100 GPU와 V100 GPU는 유료옵션임
+			- 'CPU' 보다 'T4 GPU'가 빠르고, 최소 내 컴퓨터보단 빠를 것이다
+	- 웬만한 pip 패키지 사용 가능
+		- `!` 후 `pip3`를 통해 pip 명령어 사용 가능
+		- `! pip freeze`하면 사용 가능한 pip 패키지들 출력
+
+
+
+9/13
+- 모델의 성능을 어떻게 향상시켰는가 - 인터뷰 때 포커스를 맞춰야 함
+
+9/14
+- visual studio에서 변수값들 확인: Variables(+Code 버튼 있는 상단 맨 오른쪽에 있음)
+
+9/20
+- 맥 한글 설정: euc-kr
+
+9/22
+- 프로젝트 - assignment3만 제출하고 시작하면 됨 (이번에는 assign.1/2는 생략)
+- 행정동: 주민센터 단위로 나뉘어진 것
+	- 행정동은 몇 개의 법정동을 묶는다
+
 
 
 
@@ -288,11 +379,7 @@ pip command *** 맥은 반드시 pip가 아닌 pip3로 해야 됨
 - python3 -m pip install --upgrade pip
 	: pip upgrade
 
-9/13
-- 모델의 성능을 어떻게 향상시켰는가 - 인터뷰 때 포커스를 맞춰야 함
-
-9/14
-- visual studio에서 변수값들 확인: Variables(+Code 버튼 있는 상단 맨 오른쪽에 있음)
-
-
-hello
+노트북
+- lg gram
+- 외장하드 따로 붙일 수 있는 것
+- GPU 큰 것
