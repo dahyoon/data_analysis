@@ -343,7 +343,7 @@ getter-setter 설치 방법:
 - visual studio에서 변수값들 확인: Variables(+Code 버튼 있는 상단 맨 오른쪽에 있음)
 
 9/20
-- 맥 한글 설정: euc-kr
+- QGIS에서 맥 한글 설정: euc-kr
 
 9/22
 - 프로젝트 - assignment3만 제출하고 시작하면 됨 (이번에는 assign.1/2는 생략)
