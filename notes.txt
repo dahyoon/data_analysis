@@ -355,7 +355,7 @@ getter-setter 설치 방법:
 - QGIS reference website
 
 9/26 QGIS - 보간법
-
+- QGIS에서는 IDW 사용
 
 
 
