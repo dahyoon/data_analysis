@@ -126,6 +126,7 @@ for CATEGORY in CATEGORIES:
                     
                 counter += 1
                 
+                
                 print("%d news article crawled" % counter)
     
 # %%
