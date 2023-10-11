@@ -126,15 +126,10 @@ for CATEGORY in CATEGORIES:
                     
                 counter += 1
                 
-                
                 print("%d news article crawled" % counter)
     
 # %%
-
-
-
 # IT/과학 : 105, 경제 : 101, 사회 : 102, 생활/문화 : 103, 세계 : 104, 정치 : 100
-
 
 # IT/과학 - 강사님, 한지은
 # 경제 - 오지훈, 김정훈
