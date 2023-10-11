@@ -1,10 +1,12 @@
 # %%
 # 필요한 모듈 참조
+import os
 import requests
 from bs4 import BeautifulSoup
 
 # %%
 # IT/과학 : 105, 경제 : 101, 사회 : 102, 생활/문화 : 103, 세계 : 104, 정치 : 100
+#CATEGORIES = [105, 101, 102, 103, 104, 100]
 CATEGORIES = [100]
 
 # 수집하고자 하는 카테고리 번호
@@ -27,95 +29,104 @@ session.headers.update({
 })
 
 # %%
+for CATEGORY in CATEGORIES:
+    # 수집한 뉴스기사의 수를 저장할 변수
+    counter = 1
 
-# 수집한 뉴스기사의 수를 저장할 변수
-counter = 1
+    # 수집한 뉴스기사를 저장할 파일명
+    dir = "news_%d" % CATEGORY
+    
+    if not os.path.exists(dir):
+        os.mkdir(dir)
 
-# 수집한 뉴스기사를 저장할 파일명
-fileName = "./{myname}_naver_news_{category}_{counter}.txt"
-
-# 주어진 카테고리에 대해 주어진 페이지 범위만큼 뉴스 수집
-for page in PAGES:
-    targetUrl = URL.format(category=CATEGORY, page=page)
-    print(targetUrl)
-    
-    # 생성한 접속객체를 활용하여 뉴스 목록 페이지에 접속
-    r = session.get(targetUrl)
-    
-    # 접속에 실패한 경우
-    if r.status_code != 200:
-        # 에러코드와 에러메시지 출력
-        msg = "[%d Error] %s 에러가 발생함" % (r.status_code, r.reason)
-        # 에러를 강제로 생성시킴
-        raise Exception(msg)
-    
-    # 응답결과를 텍스트로 변환
-    r.encoding = "euc-kr"
-    soup = BeautifulSoup(r.text)
-    #print(soup)
-    
-    # 뉴스 기사 제목을 위한 CSS 선택자
-    selector = ".sh_item .sh_text .sh_text_headline, #section_body ul li dl dt a"
-    
-    # 뉴스기사 제목 추출
-    headlines = soup.select(selector)
-    #print(headlines)
-    
-    # 각 페이지별로 추출된 뉴스기사의 본문 URL
-    for h in headlines:
-        href = h.attrs["href"]
+    # 주어진 카테고리에 대해 주어진 페이지 범위만큼 뉴스 수집
+    for page in PAGES:
         
-        # 기사 본문에 대한 세부 내용 수집
-        if href:
-            print(href)
-            bodyRes = session.get(href)
+        fileName = "%s/{myname}_naver_news_{category}(%d_page)_{counter}.txt" % (dir, page)
+    
+        targetUrl = URL.format(category=CATEGORY, page=page)
+        print(targetUrl)
+        
+        # 생성한 접속객체를 활용하여 뉴스 목록 페이지에 접속
+        r = session.get(targetUrl)
+        
+        # 접속에 실패한 경우
+        if r.status_code != 200:
+            # 에러코드와 에러메시지 출력
+            msg = "[%d Error] %s 에러가 발생함" % (r.status_code, r.reason)
+            # 에러를 강제로 생성시킴
+            raise Exception(msg)
+        
+        # 응답결과를 텍스트로 변환
+        r.encoding = "euc-kr"
+        soup = BeautifulSoup(r.text)
+        #print(soup)
+        
+        # 뉴스 기사 제목을 위한 CSS 선택자
+        selector = ".sh_item .sh_text .sh_text_headline, #section_body ul li dl dt a"
+        
+        # 뉴스기사 제목 추출
+        headlines = soup.select(selector)
+        #print(headlines)
+        
+        # 각 페이지별로 추출된 뉴스기사의 본문 URL
+        for h in headlines:
+            href = h.attrs["href"]
             
-            # 접속에 실패한 경우
-            if bodyRes.status_code != 200:
-                # 에러코드와 에러메시지 출력
-                msg = "[%d Error] %s 에러가 발생함" % (bodyRes.status_code, bodyRes.reason)
-                # 에러를 강제로 생성시킴
-                raise Exception(msg)
-            
-            bodyRes.encoding = "utf-8"
-            bodySoup = BeautifulSoup(bodyRes.text)
-            
-            # 제목
-            title = bodySoup.select("#title_area span")[0].text
-            print(title)
-            
-            # 본문
-            content = bodySoup.select("#dic_area")[0]
-            
-            # 본문 요소에 포함되어 있는 불필요 항목 제거
-            for target in content.find_all("span", {"class": "end_photo_org"}):
-                target.extract()
+            # 기사 본문에 대한 세부 내용 수집
+            if href:
+                print(href)
+                bodyRes = session.get(href)
                 
-            for target in content.find_all("strong", {"class": "media_end_summary"}):
-                target.extract()
+                # 접속에 실패한 경우
+                if bodyRes.status_code != 200:
+                    # 에러코드와 에러메시지 출력
+                    msg = "[%d Error] %s 에러가 발생함" % (bodyRes.status_code, bodyRes.reason)
+                    # 에러를 강제로 생성시킴
+                    raise Exception(msg)
                 
-            for target in content.find_all("table", {"class": "nbd_table"}):
-                target.extract()
+                bodyRes.encoding = "utf-8"
+                bodySoup = BeautifulSoup(bodyRes.text)
                 
-            for target in content.find_all("div", {"class": "highlightBlock"}):
-                target.extract()
+                # 제목
+                title = bodySoup.select("#title_area span")[0].text
+                print(title)
                 
-            for target in content.find_all("div", {"style": "display:none;"}):
-                target.extract()
+                # 본문
+                content = bodySoup.select("#dic_area")[0]
                 
-            for target in content.find_all("br"):
-                target.replace_with("\n")
+                # 본문 요소에 포함되어 있는 불필요 항목 제거
+                for target in content.find_all("span", {"class": "end_photo_org"}):
+                    target.extract()
+                    
+                for target in content.find_all("strong", {"class": "media_end_summary"}):
+                    target.extract()
+                    
+                for target in content.find_all("table", {"class": "nbd_table"}):
+                    target.extract()
+                    
+                for target in content.find_all("div", {"class": "highlightBlock"}):
+                    target.extract()
+                    
+                for target in content.find_all("div", {"style": "display:none;"}):
+                    target.extract()
+                    
+                for target in content.find_all("br"):
+                    target.replace_with("\n")
+                    
+                contentBody = content.text.strip()
                 
-            contentBody = content.text.strip()
-            
-            with open(fileName.format(myname="ahn", category=CATEGORY, counter=counter), "w", encoding="utf-8") as f:
-                f.write(title)
-                f.write("\n\n")
-                f.write(contentBody)
+                fname = fileName.format(myname="이광호", category=CATEGORY, counter=counter)
+                print(fname)
                 
-            counter += 1
-            
-            print("%d news article crawled" % counter)
+                with open(fname, "w", encoding="utf-8") as f:
+                    f.write(title)
+                    f.write("\n\n")
+                    f.write(contentBody)
+                    
+                counter += 1
+                
+                print("%d news article crawled" % counter)
     
 # %%
 
@@ -124,9 +135,9 @@ for page in PAGES:
 # IT/과학 : 105, 경제 : 101, 사회 : 102, 생활/문화 : 103, 세계 : 104, 정치 : 100
 
 
-IT/과학 - 강사님, 한지은
-경제 - 오지훈, 김정훈
-사회 - 박정훈, 김재현
-생활/문화 - 이정훈, 하진석
-세계 - 조해민, 이지선
-정치 - 다윤, 윤인수
+# IT/과학 - 강사님, 한지은
+# 경제 - 오지훈, 김정훈
+# 사회 - 박정훈, 김재현
+# 생활/문화 - 이정훈, 하진석
+# 세계 - 조해민, 이지선
+# 정치 - 다윤, 윤인수
