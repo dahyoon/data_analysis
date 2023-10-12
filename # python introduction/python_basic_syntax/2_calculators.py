@@ -66,3 +66,11 @@
 #     gugu = int(input('please enter number: '))
 #     for a in range(1, 10):
 #         print(f"{gugu} X {a} = {gugu*a}")
+
+# 경우의 수 생성
+    # eps = [0.5,0.6] 
+    # minPts = [4, 5]
+
+    # # 두 리스트의 원소를 조합하여 경우의 수 생성
+    # prod = list(product(*[eps, minPts]))
+    # prod
