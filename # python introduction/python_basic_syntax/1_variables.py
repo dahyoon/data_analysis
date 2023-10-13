@@ -279,3 +279,8 @@
         # for a in range(1):
             # print(type(a))
             # >> <class 'int'>
+
+# * -> unpacking parameter
+    # 예) def hello(*arg):
+            # ...
+        # 이 때 *는 곱하기가 아니라 unpacking parameter가 된다
