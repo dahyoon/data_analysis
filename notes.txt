@@ -472,6 +472,14 @@ getter-setter 설치 방법:
 	- 종속변수가 4개 이상이 되면 knn과 kmeans를 사용하는 것보다 pca분석 하는 것을 고려할 것 (더 빨리 되기 때문에)
 - dbscan은 차원의 수가 많아도 시간이 많이 오래 걸리지는 않는다
 
+10/13
+- 취업:
+	- 데이터베이스 기업 - 회귀분석, 분산분석 중요
+	- 데이터베이스를 도입하는 기업 - 불특정 고객에 대한 트랜드를 읽어야 되기에 후반부 알고리즘 중요
+- 현업:
+	- 고객층을 분류할 때 전문가들과 회의로 진행
+	- 실무에서는 변수 선정의 이유에 대힌 근거자료들을 제시해줘야 됨
+
 
 t-값
 - t-값의 절대값이 클수록 p-값은 작아지며, 귀무 가설에 대한 증거가 커집니다
@@ -496,6 +504,9 @@ pip command *** 맥은 반드시 pip가 아닌 pip3로 해야 됨
 	: shows lists of existing packages
 - python3 -m pip install --upgrade pip
 	: pip upgrade
+
+Python API
+- https://facebook.github.io/prophet/docs/quick_start.html
 
 노트북
 - lg gram

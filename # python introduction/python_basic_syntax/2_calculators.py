@@ -68,9 +68,13 @@
 #         print(f"{gugu} X {a} = {gugu*a}")
 
 # 경우의 수 생성
-    # eps = [0.5,0.6] 
-    # minPts = [4, 5]
-
-    # # 두 리스트의 원소를 조합하여 경우의 수 생성
-    # prod = list(product(*[eps, minPts]))
-    # prod
+    # 패키지 참조: from itertools import product, combinations
+    # product: 두 개의 리스트가 주어졌을 때 모든 경우의 조합을 주는 함수
+        # eps = [0.5,0.6] 
+        # minPts = [4, 5]
+        # list(product(*[eps, minPts]))
+        # >> [(0.5, 4), (0.5, 5), (0.6, 4), (0.6, 5)]
+    # combination: 하나의 리스트와 단일값이 주어졌을 때 모든 경우의 조합을 주는 함수
+        # a = [1, 2, 3]
+        # list(combinations(a, 2))
+        # >> [(1, 2), (1, 3), (2, 3)]
