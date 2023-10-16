@@ -1,0 +1,18 @@
+교통사고 다발/밀집지역 표시
+- QGIS를 활용하여 DBSCAN의 사고 밀집 지역 표시, 몇 반경 내 사고발생 몇 건수 지역 표시
+
+1. 서울시 행정구분 지도 가져오기
+2. 위에 Layer > Add Layer > Add Delimited Text Layer > File Name: 18_서울시_교통사고_클러스터링.csv,
+    x field: 경도, y field: 위도, Geometry CRS: 알맞은 좌표(이 예제에서는 EPSG:4326 사용) > Add
+3. 생성된 레이어의 properties > Symbology > 맨 위 차트에서 Categorized > Value: core > Classify 누르기
+    > Apply 하면 교통하고 다발지역 (True) 표시됨
+4. 위치 확인하고 싶으면 구글/카카오 맵 깔고 서울시의 불투명도(opacity)를 줄이면 됨
+5. 좌표계 환산된 교통사고 발생지역 저장
+    생성된 교통사고 클러스터링 레이어 다른이름으로 저장 (파일이름 설정: car_accident, CRS: 서울시 행정구분 지도와 
+    동일 (이 예제에선 5181))
+6. Processing Toolbox에 DBSCAN clustering 검색 > input layer: car_accident (이 좌표계는
+    프로젝트 좌표계와 동일해야 됨) > Minimum cluster size: 5 > Maximum distance between clustered points는 
+    eps 값이다; 0.7(km)하면 적당히 잡히는 것을 확인하여 이렇게 함 > Run > Close 하면 반경 0.7km 이내 교통사고 5건 이상 
+    있는 지역들의 데이터가 추가된 Clusters라는 파일이 생성됨 (Cluster_ID = index, Cluster_SIZE = 교통사고 발생 수, Null
+    은 교통사고 5건 미만 지역들)
+7. Clusters왼쪽마우스 > Properties > Symbology > 차트 중 Categorized, Value: Cluster_ID > Classify 누르기 > Apply
