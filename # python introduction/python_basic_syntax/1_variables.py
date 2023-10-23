@@ -177,7 +177,10 @@
         # a = "python"
         # print(a.find('x'))
         # >> -1
-
+    # st.rfind('o') - 대상 문자열에 지정한 문자가 몇 번째 index에 **마지막**으로 있는지 출력하는 함수
+        # a = "hello"
+        # print(a.rfind('l'))
+        # >> 3
 # 연습
         # whatyouwant = input("아무런 문자나 입혁해주세요")
         # search = input("찾고자 하는 문자 1개만 입력해주세요")
@@ -284,3 +287,5 @@
     # 예) def hello(*arg):
             # ...
         # 이 때 *는 곱하기가 아니라 unpacking parameter가 된다
+
+# %%
