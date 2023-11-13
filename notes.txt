@@ -514,6 +514,19 @@ getter-setter 설치 방법:
 - 시험 중요: 시퀀스와 트랜잭션의 개념
 - 시험을 준비하면 MySQL보단 Oracle을 더 공부하라
 
+11/13
+- Geocoding 무제한 openAPI
+	- v-world open api (https://www.vworld.kr/dev/v4api.do)
+		- 가입 후 로그인 후 사용
+		- 주소 <-> 위경도 바꿀 수 있음
+- github
+	- fork 
+		- 누르면 그 사람의 github을 내 github에 그대로 복사됨
+		- 원 github이 삭제되면 내 github에 포크된 그 사람의 github도 삭제됨
+		- 그러므로 계속 갖고 있으려면 컴퓨터에 다운로드 받아놔야 됨
+	- pull request
+		- 내가 작업한 결과를 원작자에게 보고하는 것
+
 r값 (상관 분석)
 - = 상관계수
 - correlation coefficient
