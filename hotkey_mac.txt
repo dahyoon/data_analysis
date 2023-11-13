@@ -1,3 +1,5 @@
 developer tools: option + command + J
 new file: ctr + option + command + n
 open terminal: ctr + `
+powerpoint:
+    - 글꼴 서식 복사: Ctrl + Shift + C
