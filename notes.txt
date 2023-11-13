@@ -505,6 +505,15 @@ getter-setter 설치 방법:
 - 머신러닝에서 무조건 학습은 train으로 하고 예측은 test로 하기 (정석)
 - 머신러닝에서 무조건 성능평가 (score)도 test로 하기 (정석)
 
+11/9
+- https://github.com/Team-Neighborhood/I-want-to-study-Data-Science/wiki
+- https://www.youtube.com/watch?v=h6rxKbbgI28
+
+11/10 오라클
+- MAC에는 오라클 안 깔림
+- 시험 중요: 시퀀스와 트랜잭션의 개념
+- 시험을 준비하면 MySQL보단 Oracle을 더 공부하라
+
 r값 (상관 분석)
 - = 상관계수
 - correlation coefficient
