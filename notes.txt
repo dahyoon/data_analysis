@@ -1,3 +1,7 @@
+Python 설치:
+- terminal에 'python3 --version'이라고 입력했을 때 'python'이라고 출력되면 python이 미설치되었다는 것을 의미
+
+
 데이터분석 자격증 시험:
 - https://www.dataq.or.kr/www/sub/a_06.do
 - ADP (Advanced Data Professional)
