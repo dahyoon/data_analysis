@@ -1,6 +1,7 @@
 # set은 (수학)집합이라고도 함
 # {} 사용
 # type은 set
+# unordered
 # s1 = {'이름', '나이', '성별'}
 # index와 중복이 없음 (dictionary같이)
     #index로 접근 불가
