@@ -37,7 +37,7 @@
         #             'multiply': lambda a, b : a * b}
         # print(cal_dict['plus'](1, 2))
         # >> 3
-# 삼항 연산자(조건부표현식) 사용하여 lambda로 입력한 매개변수가 짝수이면 Truem 홀수이면 False
+# 삼항 연산자(조건부표현식) 사용하여 lambda로 입력한 매개변수가 짝수이면 True 홀수이면 False
         # oddOrNot = lambda x : True if x % 2 == 0 else False
 
 

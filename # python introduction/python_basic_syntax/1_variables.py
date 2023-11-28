@@ -130,6 +130,10 @@
             # print(day)
             # >> children's_day
 
+# str으로 끝나는지 확인
+    # print('Hello'.endswith('llo'))
+    # >> True
+
 # 문자열 포맷팅 - 문자열 중간에 특정 문자 (또는 숫자 등)를 삽입하는 방식
     # 목적: 문자열을 직접 삽입하면 1회성으로 coding할 수 밖에 없지만, 포맷팅은 변수값을 삽입할 수 있다; 따움표를 여러번 안 닫아도 된다
         # 아래와 같이 코딩하면 따옴표로 열고 닫고를 너무 많이 해서 귀찮다
@@ -195,13 +199,17 @@
     # 열.isdigit() - 열이 문자열인지 아닌지 확인 (True/False)
 
 # 문자열 대소문자 변경
-    # st.upper() / st.lower()
+    # str.upper() / str.lower()
         # a = "hello"
         # print(a.upper())
         # >> HELLO
         # b = "HELLO"
         # print(a.lower())
         # >> hello
+    # str.swapcase()
+        # a = 'DeeesEEEo'
+        # print(a)
+        # >> dEEEseeeO
 
 # 문자열 양쪽 공백을 없애기
     # st.strip()
