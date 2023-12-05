@@ -161,7 +161,11 @@
         # print(chlist)
         # >> ['anna', 'john', 'brad']
 # list 위치반환
-    # list.index(값)
+    # list.index(값, 시작인덱스, 끝인덱스)
+            # 값 = the element to be searched
+            # 시작인덱스(optional) = start searching from this index
+            # 끝인덱스(optional) = search the element up to this index
+            # (참조: https://www.programiz.com/python-programming/methods/list/index)
         # lista = ['안','녕','히','가']
         # lista.index('가')
         # print(lista.index('가'))

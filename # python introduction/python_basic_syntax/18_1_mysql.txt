@@ -209,7 +209,7 @@ SQL 명령어
                 - WHEN [compare_value] THEN result
                 - WHEN [compare_value] THEN result
                 - ELSE result
-                - END
+                - END as 새컬럼명
             - CASE 와 END로 이루어져 있고 원하는 조건 내에 존재하지 않으면 ELSE 문을 타고 ELSE 문이 없을경우 NULL을 return
             - 예)
                 - SELECT name, CASE WHEN grade >= 90 THEN 'A' WHEN grade >= 80 THEN 'B' WHEN grade >= 70 THEN 'C' ELSE 'F' END as my_grade from grade_table;
