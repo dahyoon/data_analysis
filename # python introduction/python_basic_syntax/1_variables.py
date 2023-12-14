@@ -133,7 +133,7 @@
 # str으로 끝나는지 확인
     # print('Hello'.endswith('llo'))
     # >> True
-# str으로 시작하는지 확ㅣㄴ
+# str으로 시작하는지 확인
     # pring('Hello'.startswith('He'))
     # >> True
 
@@ -231,7 +231,7 @@
         # >> I studied java.
 
 # 문자열 쪼개기
-    # st.split() - 공백을 기준으로 문자를 잘라서 리스트에 넣음
+    # str.split() - 공백을 기준으로 문자를 잘라서 리스트에 넣음
         # a = "I studied python."
         # b = a.split()
         # print(b)
@@ -239,7 +239,7 @@
         # a = "I     studied      python."
         # b = a.split()
         # >> ['I', 'studied', 'python.']
-    # st.split(':') - ':'을 기준으로 문자를 잘라서 리스트에 넣음
+    # str.split(':') - ':'을 기준으로 문자를 잘라서 리스트에 넣음
         # a = "I:studied:python."
         # b = a.split(":")
         # print(b) 
