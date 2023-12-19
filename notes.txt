@@ -45,6 +45,9 @@ vscode setting
 - 색상 및 아이콘 테마: extensions에 가서 theme 골라서 적용
 - 설정화면 열기: font size
 
+6/16 데이터 수집 (requests)
+- 개발자도구 Developer Tools 열기: 웹브라우저에서 option + command + I
+
 6/19 월 5_카카오책검색:
 - 내 애플리케이션 > treehouse(내 앱) > 앱 키 > REST API 키: f903e6bb99d409d576298b6e08527c66
 - 문서 > Daum검색 > REST API > 웹문서 검색하기 > GET 의 URL: https://dapi.kakao.com/v2/search/web
