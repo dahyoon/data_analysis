@@ -5,16 +5,16 @@
 
 
 
-
-# f = open("test.txt", "w")
-# f.close()
+# 기본 문법
+    # f = open("test.txt", "w", encoding = 'UTF-8') # encoding="UTF-8" 은 텍스트 파일에서 한글이 안 깨지게 해준다
+    # f.close()
 
 
 
 
 # # w mode
 
-# f = open("test.txt", "w", encoding="UTF-8")       # encoding="UTF-8" 은 텍스트 파일에서 한글이 안 깨지게 해준다
+# f = open("test.txt", "w", encoding="UTF-8") 
 # for i in range(10):
 #     data = "%d번째 줄입니다.\n"%i
 #     f.write(data)
@@ -160,6 +160,8 @@
 # searchDir = '/Users/dayoonz/Desktop/안다윤'
 # searchRecur(searchDir)
 
+
+
 # 파일 이름 변경
 
 # import os
@@ -190,4 +192,3 @@
     #     a = ','.join(a)
     #     rw.write(a)
     # rw.close()
-
