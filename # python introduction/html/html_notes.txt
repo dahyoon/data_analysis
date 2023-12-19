@@ -851,3 +851,7 @@ JAVASCRIPT
 명
 - HTML 태그: Element
 - HTML 속성: Attribute
+
+페이지 불러오기
+- 아래를 브라우저에 입력하면 나타날 것
+file:///Users/dayoonz/Desktop/data_analysis/%23%20python%20introduction/html/test1.html
