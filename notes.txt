@@ -33,7 +33,8 @@ $ pip3 list
 	- python -m jupyter (Windows 용)
 
 접속 정보 (브라우저 및 os 버전 정보):
-Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+- window: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+- Mac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
 
 vscode setting
 - 확장 extension
@@ -47,6 +48,16 @@ vscode setting
 
 6/16 데이터 수집 (requests)
 - 개발자도구 Developer Tools 열기: 웹브라우저에서 option + command + I
+- 인터페이스: 컴퓨팅 장치를 다루기 위해 사람이 조작하는 보조기기들
+- User Interface: 인터페이스의 개념을 프로그램으로 제한한 것; 프로그램을 사용하기 위한 수단
+	- 종류
+		1) GUI (Graphic User Interface)
+		2) CLI (Command Line Interface): 명령어 환경
+- API (Application Programming Interface):
+	- 어떠한 응용프로그램에서 데이터를 주고 받기 위한 방법
+	- 프로그래밍을 하기 위한 수단 
+	- (print, read, add, import와 같은 모둘 덩어리들)
+- Open API: 공개된 API
 
 6/19 월 5_카카오책검색:
 - 내 애플리케이션 > treehouse(내 앱) > 앱 키 > REST API 키: f903e6bb99d409d576298b6e08527c66

@@ -1,6 +1,8 @@
 # open: file 시스템 입출력 라이브러리
     # mode(w, r, a)을 갖고 있다
         # w: write(덮어쓰기), r:read. a:추가
+        # r w a 는 text 파일 (.txt, .json, .html, etc.) 형태만 처리할 수 있다
+        # rb wb, ab 는 binary(2진수)들 전용이다
     # open을 했을 떄 해당 파일명이 없으면 자동생성한다.
 
 
@@ -28,6 +30,8 @@
 # line = f.readline()                                           # f.readline() - 첫번째 줄만 가져오는 함수
 # print(line)
 # f.close
+
+
 
 # with ... as f: 은 나중에 안 닫아도 된다(f.close 필요 없)
 
