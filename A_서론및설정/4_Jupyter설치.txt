@@ -1,0 +1,9 @@
+<Jupyter 설치>
+
+1. 명령프롬프트 실행
+	- WinKey + R -> cmd(엔터)
+2. jupyter 설치
+	- pip install --upgrade Jupyter      # --upgrade의 의미: 프로그램이 이미 깔려있으면 깔려있는 버전이 최신이 아닐 시 기존의 프로그램을 지우고 최신 버전으로 다운로드
+3. jupyter 실행 (웹 - 구글 크롬 - 상에서 진행하는 것)
+	- jupyter lab   # 작업 폴더 위치에서 명령프롬프트(터미널) 실행 후 (Mac 용)
+	- python -m jupyter (Windows 용)

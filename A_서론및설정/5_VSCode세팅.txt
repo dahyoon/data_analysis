@@ -1,0 +1,10 @@
+vscode setting
+
+- 확장 extension
+	- python 검색 후 다운로드하면 Python 사용 가능
+- jupyter 파일 생성 (jupyter의 확장자는 .ipynb)
+	- 명령프롬프트 (Ctrl (Mac은 Command) + Shift + p) > jupyter > Create New Jupyter Notebook를 클릭/Enter누르기
+	- '>'가 있으면 명령어, 없으면 검색창이 됨
+- 화면 확대/축소: command + '-' or '+'
+- 색상 및 아이콘 테마: extensions에 가서 theme 골라서 적용
+- 설정화면 열기: font size

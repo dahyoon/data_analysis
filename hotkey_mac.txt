@@ -1,6 +1,11 @@
-developer tools: option + command + J
-new file: ctr + option + command + n
-open terminal: ctr + `
+browser:
+    - developer tools: option + command + I
+
 powerpoint:
     - 글꼴 서식 복사: Command + Shift + C
-    - 글꼴 서실 해: Command + Space bar
+    - 글꼴 서식 해제: Command + Space bar
+vscode:
+    - new file: ctr + option + command + n
+    - open terminal: ctr + shift + `
+    - 명령프롬프트: Command + Shift + p
+    - 화면 확대/축소: command + '-' or '+'
