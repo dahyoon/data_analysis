@@ -445,7 +445,6 @@ HTML과 CSS
                         /* id 방식*/
                         #myid { color: white }
 
-
                         /* class 방식 */
                         .myclass { color: red; }
 
