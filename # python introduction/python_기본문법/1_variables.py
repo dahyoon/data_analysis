@@ -294,6 +294,14 @@
             # print(type(a))
             # >> <class 'int'>
 
+# enumerate
+    # 인덱스(index)와 원소(element)를 튜플(tuple) 형태로 만들어준다
+    # for a, b in enumerate(['a', 'b', 'c']):
+    #     print(a, b)
+    # >> 0 a
+    # >> 1 b
+    # >> 2 c
+
 # * -> unpacking parameter
     # 예) def hello(*arg):
             # ...
