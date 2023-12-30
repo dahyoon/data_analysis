@@ -42,6 +42,9 @@
 # slicing
     # 여러개의 데이터를 범위를 지정해서 가져오고 싶을 때 사용
     # slicing의 결과값은 같은 list로 출력
+    # lista = ["a", "b", "c", "d", "e", "f"]
+    # print(lista[:4])
+    # >>> ["a", "b", "c", "d"]
 
 # list 더하기
     # lista = [1, 2, 3, 4, 5]
