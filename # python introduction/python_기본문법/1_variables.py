@@ -219,6 +219,10 @@
         # a = "     hello world      "
         # print(a.strip())
         # >> hello world
+    # str.strip(' \n$#%')
+        # a = "    Hello I'm Pearl, I have $500 dollars #I'm rich.  \n  $%#"
+        # print.(a.strip(' \n$#%'))
+        # >> Hello I'm Pearl, I have $500 dollars #I'm rich.
 
 # myId = (input("id를 입력해주세요")).strip()
 # myPw = input("비밀번호를 입력해주세요")
