@@ -10,6 +10,7 @@ import math
 
 
 import requests
+
 from bs4 import BeautifulSoup
 
 # 웹으로 주고받는 통신 프로토콜(약속)을 http통신이라 한다
