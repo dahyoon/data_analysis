@@ -10,7 +10,7 @@ def sendMail(from_addr, to_addr, subject, content, files=[]):
     # 로그인계정이름 (네이버=아이디, 구글=메일주소)
     username ="w2crosss@gmail.com"
     # 비밀번호 (네이버=개인비밀번호,애플리케이션비밀번호, 구글=앱비밀번호)
-    password ="kgir mquj laqj jwmm"
+    password ="직접입력하세요"
     # 구글 발송 서버 주소와 포트 (고정값)
     smtp ="smtp.gmail.com"
     port =587
