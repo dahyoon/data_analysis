@@ -8,9 +8,9 @@ def sendMail(from_addr, to_addr, subject, content, files=[]):
     # 컨텐츠형식 (plain or html)
     content_type ="plain"
     # 로그인계정이름 (네이버=아이디, 구글=메일주소)
-    username ="직접설정하세요"
+    username ="w2crosss@gmail.com"
     # 비밀번호 (네이버=개인비밀번호,애플리케이션비밀번호, 구글=앱비밀번호)
-    password ="직접설정하세요"
+    password ="직접입력하세요."
     # 구글 발송 서버 주소와 포트 (고정값)
     smtp ="smtp.gmail.com"
     port =587
@@ -54,4 +54,4 @@ def sendMail(from_addr, to_addr, subject, content, files=[]):
     mail.quit()
 
 if __name__ == "__main__":
-    sendMail ("w2crosss@gmail.com", "redshinypearl@hotmail.com", "제목입니다.", "내용입니다.")
+    sendMail ("w2crosss@gmail.com", "redlenz@naver.com", "제목입니다.", "내용입니다.")
