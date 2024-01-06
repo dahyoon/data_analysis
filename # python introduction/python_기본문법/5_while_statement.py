@@ -3,6 +3,8 @@
     # 그리고 True이면 또 다기 실행한다.
     # 그러다 조건이 False가 되면 while문 종료
 
+# 반면, Until문 - 조건문이 거짓인 경우 반복
+
 # 기본구조
     # listA = [1, 2, 3]
     # while listA:
