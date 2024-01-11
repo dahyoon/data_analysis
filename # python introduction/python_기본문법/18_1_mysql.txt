@@ -484,7 +484,7 @@ dmbs (Data Management System)
             - 컬럼명 변경
                 - ALTER TABLE 테이블명 RENAME COLUMN 변경대상컬럼명 TO 새로운컬럼명;
                 - 예) ALTER TABLE author RENAME COLUMN pw TO password;
-            -컬럼 추가
+            - 컬럼 추가
                 - ALTER TABLE 테이블명 ADD COLUMN 새로운필드명 필드타입;
                 - 예) ALTER TABLE author ADD COLUMN updated_at DATETIME;
             - 컬럼 옵션 덮어 붙여쓰기
@@ -569,7 +569,7 @@ dmbs (Data Management System)
 insert into codingtest (writer_id, price, status) values ('miyeon89', 1500, 'DONE');
 
 
-
+터미널에서 쿼리문 종료 단축키: Ctrl + C
 
 순서 예:
 - SELECT NAME, COUNT(*) AS COUNT 
@@ -584,3 +584,7 @@ Docker
 마이그레이션
 - python3 manage.py makemigrations --> DDL문생성
 - python3 manage.py migrate --> DDL문 생성 후 반영
+
+한국어 깨질 때
+- 명령 프롬프트에서 status; 입력 후 사용하고 있는 database의 상태 확인
+    - 
