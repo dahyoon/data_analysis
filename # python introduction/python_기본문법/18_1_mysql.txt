@@ -1,30 +1,30 @@
 데이터 베이스
-    - 엑셀과 유사한 구조
-    - 관계형 데이터베이스 (RDB, Relational Database) 
-    - 예) Oracle, mysql, postgres
-    - mysql database server의 계층 구조
-        - mysql database server > 스키마 n개 > 테이블 n개
-    - CRUD: 추가, 조회, 수정, 삭제를 의미하는 IT 전반의 용어 (create, read, update, delete)
+- 엑셀과 유사한 구조
+- 관계형 데이터베이스 (RDB, Relational Database) 
+- 예) Oracle, mysql, postgres
+- mysql database server의 계층 구조
+    - mysql database server > 스키마 n개 > 테이블 n개
+- CRUD: 추가, 조회, 수정, 삭제를 의미하는 IT 전반의 용어 (create, read, update, delete)
 
 IP 프로토콜의 한계
-    - 패킷을 받을 대상서버가 불능이거나, 중간에 패킷이 소실될 수가 있음 (비연결성)
-    - 패킷의 순서가 보장되지 않음
+- 패킷을 받을 대상서버가 불능이거나, 중간에 패킷이 소실될 수가 있음 (비연결성)
+- 패킷의 순서가 보장되지 않음
 
 mysql 및 WorkBench 설지
-    - docker run --name board_mysql -e MYSQL_ROOT_PASSWORD=1234 -d -p 3406:3306 mysql
-    - 원래는 "docker run --name board_mysql -e MYSQL_ROOT_PASSWORD=1234 -d -p 3306:3306 mysql"
-    인데 학원에서는 공용컴퓨터이다 보니 다른 사람이 그 컴퓨터에 docker가 아닌 컴퓨터에 이미 깔아놓아서 같은 이름으로 설치하지 못하게 하는 것 --> 그래서 3306을 3406으로 변환해서 설치했음
-    - 3406으로 했어도 껍데기만 3406으로 저장해놨을 뿐 안에서는 3306으로 인식 될 것임. 왜냐하면 mysql개발자가 최초에 만들 때 3306으로 만들었기 때문임
+- docker run --name board_mysql -e MYSQL_ROOT_PASSWORD=1234 -d -p 3406:3306 mysql
+- 원래는 "docker run --name board_mysql -e MYSQL_ROOT_PASSWORD=1234 -d -p 3306:3306 mysql"
+인데 학원에서는 공용컴퓨터이다 보니 다른 사람이 그 컴퓨터에 docker가 아닌 컴퓨터에 이미 깔아놓아서 같은 이름으로 설치하지 못하게 하는 것 --> 그래서 3306을 3406으로 변환해서 설치했음
+- 3406으로 했어도 껍데기만 3406으로 저장해놨을 뿐 안에서는 3306으로 인식 될 것임. 왜냐하면 mysql개발자가 최초에 만들 때 3306으로 만들었기 때문임
 
 docker 컨테이너 내부로 접속
-    - docker ps -a
-    - docker start 컨테이너ID
-    - docker exec -it 컨테이너ID(또는 컨테이너명) mysql -u root -p 1234*****
-        - 여기서 -p 다음을 입력하지 않고 enter 누르기 
-        - 왜냐하면 history보면 다른 사람이 볼 수도 있기 때문
-        - *****빼고 enter 누른 다음 enter password: 뜨면 1234 입력하고 enter
-    - -u : user
-    - -p : password
+- docker ps -a
+- docker start 컨테이너ID
+- docker exec -it 컨테이너ID(또는 컨테이너명) mysql -u root -p 1234*****
+    - 여기서 -p 다음을 입력하지 않고 enter 누르기 
+    - 왜냐하면 history보면 다른 사람이 볼 수도 있기 때문
+    - *****빼고 enter 누른 다음 enter password: 뜨면 1234 입력하고 enter
+- -u : user
+- -p : password
 
 docker exec -it board_mysql mysql -u root -p
 
@@ -331,8 +331,6 @@ sql 함수
         - YEAR(), MONTH(), DAY()
 
 
-
-
 용어
     - table의 구조
         - 열(column) = 필드(field) = 속성    -> 컬럼 정보 바꿀께요~ 라고 하면 DDL로 alter table 하는 것
@@ -342,7 +340,7 @@ sql 함수
             - PRIMARY KEY (PK) = 테이블에 저장된 레코드를 고유하게 식별하는 컬럼/key
                 - Not Null + Unique
                 - PK 설정 시: ... , PRIMARY KEY (필드명)
-                    - 예) create table post(id BIGINT AUTO_INCREMENT, title VARCHAR(30), contents VARCHAR(255), author_id BIGINT, PRIMARY KEY(id));
+                    - 예) CREATE TABLE post(id BIGINT AUTO_INCREMENT, title VARCHAR(30), contents VARCHAR(255), author_id BIGINT, PRIMARY KEY(id));
             - FOREIGN KEY (FK) = 두 테이블을 연결하는 데 사용하는 컬럼/key
                 - FK 설정 시: ... , FOREIGN KEY (필드명) REFERENCES 다른테이블명(다른테이블의필드명)
                     - 예) CREATE TABLE post(id BIGINT AUTO_INCREMENT, title VARCHAR(30), contents VARCHAR(255), author_id BIGINT, PRIMARY KEY(id), FOREIGN KEY (author_id) REFERENCES author(id));
@@ -585,6 +583,28 @@ Docker
 - python3 manage.py makemigrations --> DDL문생성
 - python3 manage.py migrate --> DDL문 생성 후 반영
 
+
+
 한국어 깨질 때
-- 명령 프롬프트에서 status; 입력 후 사용하고 있는 database의 상태 확인
-    - 
+- 명령 프롬프트에서
+    - status; 입력 후 사용하고 있는 database의 상태 확인
+    - 혹은 show variables like '%c'; 입력 후 다음을 확인:
+        +--------------------------+--------+
+        |Variable_name             |Value   |
+        |--------------------------|--------|
+        | character_set_client     | utf8   |
+        | character_set_connection | utf8   |
+        | character_set_database   | utf8   |
+        | character_set_filesystem | binary |
+        | character_set_results    | utf8   |
+        | character_set_server     | utf8   |
+        | character_set_system     | utf8   |
+        +--------------------------+--------+
+- 만약에 위와 같이 설정되어 있지 않은 경우:
+    - 명령 프롬프트에서 다음과 같이 설정:
+        - SET character_set_client = 'utf8';
+        - SET character_set_connection = 'utf8';
+        - SET character_set_database = 'utf8';
+        - SET character_set_results = 'utf8';
+        - SET character_set_server = 'utf8';
+        - SET character_set_system = 'utf8';
