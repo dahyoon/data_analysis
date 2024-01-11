@@ -1,7 +1,7 @@
 django
     - 모든 url매핑은 url.py
 
-django 깔기?
+django 다운받기
     - git hub 웹사이트에 new repository 만들기 - 이름: django_board
     - terminal에 다음과 같이 입력:
         - git clone URL(github에서복사한것 -> django_board)
@@ -63,7 +63,6 @@ django 접속
     -localhost:8000
 
 1. 템플릿 엔진: 백엔드에서 화면까지 - 옛날방식
-    - 
 2. rest api 방식: 프론트/백엔드 구분 - 현대적인 프로그래밍
 
 developer tools
@@ -123,11 +122,11 @@ DB 세팅
 docker exec -it board_mysql mysql -u root -p
 
 1. 계시판 목록
-1) 제목, (작성자), 작성일
+    1) 제목, (작성자), 작성일
 2. 게시글 등록
-1) 제목, 내용 (text area), (작성자 email)
+    1) 제목, 내용 (text area), (작성자 email)
 3. 게시판 상세조회
-1) 제목, 내용, (작성자), 작성일, 수정일
+    1) 제목, 내용, (작성자), 작성일, 수정일
 4. 게시글 수정 : 제목, 내용
 
 
