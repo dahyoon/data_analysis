@@ -415,6 +415,11 @@ mysql 연산자
         - 예) SELECT * 
             FROM author 
             WHERE created_at > '2023-06-07';
+        - 예) SELECT name, (price * 0.9)  AS discounted 
+              FROM icecream
+              WHERE price > 1000
+            - 1000원보다 비싼 아이스크림들의 이름과 10% 할일 된 가격 출력
+
     - 논리 연산자
         - ALL (다른 값들의 집합의 모든 값)
         - AND &&
