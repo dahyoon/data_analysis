@@ -241,10 +241,6 @@ SQL 명령어
             - 만약 a의 값이 NULL이 아니면 a 그 자체를 반환, NULL이면 b를 반환
             - 예)
                 - SELECT name, email, IFNULL (role, 'user') as FROM author;
-    - 조건 걸기
-        - WHERE ~
-            - WHERE 컬럼명 > 컬럼값
-            - WHERE 컬럼명 = 컬럼값
     - LIKE 와 NOT LIKE
         - 검색 패턴
         - 특정 패턴을 포함하는 데이터만을 검색하기 위한 와일드카드(wildcard) 문자
@@ -560,6 +556,7 @@ dmbs (Data Management System)
                 - 문법: SELECT DISTINCT 컬럼명1 [, 컬럼명2, 컬럼명3 ...] FROM 테이블명;
                 - DISTINCT 키워드는 SELECT 뒤와 첫 컬럼의 앞에 위치해야 함
                 - NULL 값도 하나의 값으로 간주함
+                    - MySQL에서 NULL값은 가장 작은 값으로 간주됨 -> ORDER BY 했을 때 가장 작은 값으로 간주됨
                 - 예) SELECT DISTINCT name
                       FROM author;
                     - 중복된 name들 제거되고 하나씩만 반환
@@ -572,6 +569,12 @@ dmbs (Data Management System)
                 - 예) SELECT name, email 
                       FROM author 
                       LIMIT 1;
+            - WHERE ~
+                - 조건 걸기, 특정 조건을 만족하는 데이터 한정 출력
+                - 문법: SELECT 컬럼명 FROM 테이블명 WHERE 조건
+                    - WHERE 컬럼명 (연산자) 컬럼값
+                - 예) ... WHERE 컬럼명 = 컬럼값
+
             - ORDER BY
                 - 선택한 결과의 정렬 (항상 조건 다 걸고 마지막에 붙임)
                 - 문법: ORDER BY 컬럼명 [ASC/DESC]
@@ -592,7 +595,12 @@ dmbs (Data Management System)
                     - 컬럼이 하나 이상일 경우 처음 컬럼부터 번호가 매겨진다 (name = 1, email = 2, ...)
                     - ORDER BY 2에서 '2'는 SELECT 뒤 두번째로 명시된 컬럼인 'email'을 가리킨다
                     - 그러므로 email을 기준으로 오름차순 정렬
-                - ORDER BY 생략시 PK를 기준으로 정렬하여 결과값 반환
+                - ORDER BY절 생략시 PK를 기준으로 정렬하여 결과값 반환
+                - ORDER BY절에는 SELECT절에 없는 컬럼도 사용 가능
+                - 예) SELECT name 
+                      FROM author 
+                      ORDER BY email;
+                    - email을 기준으로 author 테이블의 name들이 오름차순 정렬로 출력
                 - 예제) name만을 기준으로 오름차순 정렬
                     - SELECT * FROM author ORDER BY name ASC;
                 - 예제) name, email 기준으로 오름차순 정렬; name 중복일경우, email을 기준으로 정렬하게 되는 것
