@@ -95,11 +95,11 @@
     # >> Python is fun.Python is fun.Bye.
 
 # 문자열 index
-    # st[] - 자리 순서: 0, 1, 2, 3, 4, 5 ...
+    # str[] - 자리 순서: 0, 1, 2, 3, 4, 5 ...
         # st = "python's fun"
         # print(st[3])
         # >> h
-    # st[-1] - 마지막문자를 출력: 자리 순서: ... -3, -2, -1
+    # str[-1] - 마지막문자를 출력: 자리 순서: ... -3, -2, -1
         # st = "python's fun"
         # print(st[-1])
         # >> n
@@ -181,8 +181,8 @@
         # >> 1
     # set이랑 dict는 카운트 못함
 
-# 문자열 순서 찾기
-    # st.find('o') st.index('o') - 대상 문자열에 지정한 문자가 몇 번째 index에 있는지 출력하는 함수
+# 문자열 순서 찾기 (index)
+    # str.find('o') str.index('o') - 대상 문자열에 지정한 문자가 몇 번째 index에 있는지 출력하는 함수
         # a = "python"
         # print(a.find('o'))
         # >> 4

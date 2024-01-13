@@ -1,0 +1,9 @@
+실습 환경 (택 1)
+- Local 환경
+    - Oracle XE와 SQL Developer 설치
+    - 속도가 빠르며 Query 길이에 제한이 없음
+    - 설치가 복잡함
+- Cloud 환경
+    - https://livesql.oracle.com
+    - 설치가 필요 없으며 어디에서나 접속 가능
+    - 속도가 느리며 Query 길이에 제한이 있음
