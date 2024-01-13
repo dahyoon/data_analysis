@@ -77,3 +77,4 @@ ORACLE 연산자
                 >> str = 'abcd'
             - CONCAT(str1, str2)
                 - 2개만 연결 - 3개 이상 불가능
+        - BETWEEN + AND, NOT BETWEEN + AND
