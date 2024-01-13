@@ -241,16 +241,6 @@ SQL 명령어
             - 만약 a의 값이 NULL이 아니면 a 그 자체를 반환, NULL이면 b를 반환
             - 예)
                 - SELECT name, email, IFNULL (role, 'user') as FROM author;
-    - LIKE 와 NOT LIKE
-        - 검색 패턴
-        - 특정 패턴을 포함하는 데이터만을 검색하기 위한 와일드카드(wildcard) 문자
-        - SELECT + LIKE + %(any)
-            - 예) SELECT * FROM author WHERE name LIKE 'a%';
-                - 'a'로 시작하는 것
-            - 예) SELECT * FROM author WHERE name LIKE '%o';
-                - 'o'로 끝나는 것
-            - 예) SELECT * FROM author WHERE name LIKE '%e%';
-                - 'e'가 중간이나 처음이나 끝에 있는 것
     - REGEXP 와 NOT REGEXP
         - 검색 패턴
         - 정규표현식을 토대로 패턴 연산 수행
@@ -409,31 +399,77 @@ sql 함수
 
 
 
-
-
 mysql 연산자
-    - mysql에서는 ==이 없음
-    - 같지 않다
-        - !=, <>
-    - <=, =, >=
-        - 예) SELECT * FROM author WHERE created_at > '2023-06-07';
-    - IS NULL, IS NOT NULL: 비어 있거나 비어있지 않거나
-        - SELECT * FROM 테이블명 WHERE 컬럼명 IS NULL;
-    - IN (값), NOT IN (값)
-        - SELECT * FROM 테이블명 WHERE 컬럼명 IN (값1, 값2, 값3)
-            - 예) SELECT * FROM author WHERE id IN (1, 3, 5);
-        - table간 데이터값 공유할 때;
-            - SELECT * FROM 테이블명1 WHERE 테이블1의컬럼명1 IN (SELECT 테이블2의컬럼명1 from 테이블2);
-                - 예) SELECT * FROM author WHERE id IN (SELECT author_id FROM post);
-    - 포함 연산 방식
-        - 10 < 컬럼명 AND 컬럼명 > 5    --> 파이썬처럼 5 < 값 < 10 안됨
-        - BETWEEN min and max
-        - 예) SELECT * FROM author WHERE created_at BETWEEN '2023-06-01' AND '2023-07-01'; 
-        - 예) SELECT * FROM author WHERE created_at > '2023-06-01' AND created_at < '2023-07-01';
+    - mysql에서 없는 것
+        - ==
+        - ||는 다른 sql 언어 (oracle, postgres, sqlite, ansi sql 등)에서 문자열 결합(string concatenation) 역할을 함
+            - mysql에서는 'logical or'이라는 뜻
+    - 산술 연산자
+        - +, -, *, /, %(나머지), ** (제곱 연산; 표준X, 표준 제곱은 POWER)
+    - 비교 연산자
+        - >, <, >=, <=, =
+        - !=(같지 않음), <>(같지 않음), 
+        - !< (왼쪽 값이 오른쪽 값보다 작지 않음)
+        - !> (왼쪽 값이 오른쪽 값보다 크지 않음)
+        - <=> (= 와 같음, NULL 값에 대한 비교까지 수행; NULL-Safe, 즉 NULL도 하나의 값으로 인식하여 비교)
+        - 예) SELECT * 
+            FROM author 
+            WHERE created_at > '2023-06-07';
     - 논리 연산자
+        - ALL (다른 값들의 집합의 모든 값)
         - AND &&
-        - OR ||
+        - OR || (다른 sql 언어에서는 문자열 결합이라는 사실 주의!)
         - NOT !
+        - ANY (조건을 따르는 목록에 해당하는 값)
+        - BETWEEN (포함 연산 방식, AND와 같이 사용)
+            - 문법: BETWEEN a AND b
+                - a, b 값 포함
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE created_at 
+                  BETWEEN '2023-06-01' AND '2023-07-01'; 
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE created_at > '2023-06-01' 
+                    AND created_at < '2023-07-01';
+            - 10 < 컬럼명 AND 컬럼명 > 5 --> 파이썬처럼 5 < 값 < 10 안됨
+        - EXISTS (행의 존재 여부)
+        - IN (list), NOT IN (list)
+            - list에 있는 값 중 하나만 일치해도 참
+            - 문법: SELECT 컬럼명 FROM 테이블명 WHERE 컬럼명 IN (값1, 값2, 값3)
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE id IN (1, 3, 5);
+            - 테이블 간 데이터값 공유 시;
+            - SELECT * FROM 테이블명1 WHERE 테이블1의컬럼명1 IN (SELECT 테이블2의컬럼명1 from 테이블2);
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE id IN 
+                        (SELECT author_id 
+                         FROM post);
+        - LIKE '비교문자열', NOT LIKE '비교문자열' 
+            - 와일드카드 (%, _)를 사용하여 해당 문자열과 유사한 문자열을 찾으려 할 때 사용
+            - 문법: SELECT 컬럼명 FROM 테이블명 WHERE 컬럼명 LIKE %(any)
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE name LIKE 'a%';
+                - 'a'로 시작하는 것
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE name LIKE '%o';
+                - 'o'로 끝나는 것
+            - 예) SELECT * 
+                  FROM author 
+                  WHERE name LIKE '%e%';
+                - 'e'가 중간이나 처음이나 끝에 있는 것
+        - NOT (부정 연산자, 사용하려는 논리 연산자의 의미를 반전시킴, NOT EXISTS, NOT BETWEEN, NOT IN 등)
+        - IS NULL, IS NOT NULL
+            - 비어 있거나 비어있지 않거나
+            - 주의: 컬럼 = NULL 하면 에러남
+            - 예) SELECT * 
+                  FROM 테이블명 
+                  WHERE 컬럼명 IS NULL;
+        - UNIQUE (유일성을 가지도록 구체화된 테이블의 모든 행 출력 - 중복 불허)
 타입 (data type): 숫자
     - 테이블의 타입 확인:
         - DESCRIBE 테이블명
@@ -513,7 +549,7 @@ mysql 연산자
 dmbs (Data Management System)
     - NOTE: 
         - 쿼리문은 관용적으로 대문자 사용(대소문자구문X)
-        - 테이블명, 컬럼명, 변수명은 대소문자를 구분함
+        - 테이블명, 컬럼명, 변수명 (데이터)은 대소문자를 구분함
         - 관계형데이터베이스 (RDB) 라고도 부른다: 서로 관계를 갖는 데이터들의 집합
     - DDL (Data Definition Lang): 테이블/컬럼 정의/변경하는 명령어
         - CREATE TABLE 테이블명(필드이름1 필드타입1, 필드이름2 필드타입2, ...)
