@@ -14,6 +14,9 @@
 # print()
     # 코드 실행 후 결과값을 가시적으로 보여주기 위해 터미널 창에 출력하는 것
 
+# input()
+    # return 값은 strings
+
 # True False
     # 숫자: 0 - False; 0이 아닌 모든 숫자 - True
     # 문자열: 빈 문자열 - False; 아무 문자열 - True

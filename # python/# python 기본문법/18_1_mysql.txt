@@ -93,7 +93,7 @@ Transaction
             - TRANSACTION 실행 중 다른 TRANSACTION이 끼어들 수 없음을 보장
         - Durability (영속성)
             - 물리적 데이터 저장 보장
-    - 프레임워크마다 다르기 때문에, 프로그램 내에서 별도로 별도로 TRANSACTION 처리를 해줘야 하는 경우가 많다
+    - 프레임워크마다 다르기 때문에, 프로그램 내에서 별도로 TRANSACTION 처리를 해줘야 하는 경우가 많다
         - 예) 예외 발생 시 rollback 처리
             try xxxx:
                 (쿼리 - orm기술)
@@ -174,23 +174,41 @@ SQL 명령어
                 - 다른 테이블의 필드는 반드시 UNIQUE나 PK 제약 조건이어야 함
                 - ... , FOREIGN KEY (필드명) REFERENCES 다른테이블명(다른테이블의필드명)
                 - ON DELETE 옵션이 별도로 없으면 RESTRICT(삭제안됨)가 DEFAULT
-                - 예) CREATE TABLE post(id BIGINT AUTO_INCREMENT, title VARCHAR(30), contents VARCHAR(255), author_id BIGINT, PRIMARY KEY(id), FOREIGN KEY (author_id) REFERENCES author(id));
+                - 예) CREATE TABLE post(id BIGINT AUTO_INCREMENT, title VARCHAR(30), contents VARCHAR(255), author_id BIGINT, 
+                    PRIMARY KEY (id), 
+                    FOREIGN KEY (author_id) REFERENCES author(id));
                 - 참조되는 테이블에서 데이터의 수정/삭제 발생 시: ON DELETE나 ON UPDATE
                     1. CASCADE
                         - 참조테이블의 key값을 삭제/수정하면 참조하는 테이블의 값도 같이 삭제/수정
                         - 예)
-                            - SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'post';
+                            - SELECT CONSTRAINT_NAME 
+                              FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+                              WHERE TABLE_NAME = 'post';
                             - # post에 있는 author_id 값을 author 테이블에서 지워보는 것
-                            - ALTER TABLE post DROP FOREIGN KEY post_ibfk_1, DROP INDEX author_id;
-                            - ALTER TABLE post ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE CASCADE;
+                            - ALTER TABLE post 
+                              DROP FOREIGN KEY post_ibfk_1, 
+                              DROP INDEX author_id;
+                            - ALTER TABLE post 
+                              ADD CONSTRAINT post_author_fk 
+                              FOREIGN KEY (author_id) 
+                              REFERENCES author(id) 
+                              ON DELETE CASCADE;
                             - # 위와 같이 실행 => author(참조 source 테이블)의 값(row)을 지우게 되면 post(참조 갖고와서 만든 테이블)의 값(row)도 지워짐
                     2. SET NULL
                         - 참조테이블의 key값을 삭제/수정하면 참조하는 테이블의 FK값이 NULL로 세팅됨
                         - 예)
-                            - SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'post';
+                            - SELECT CONSTRAINT_NAME 
+                              FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+                              WHERE TABLE_NAME = 'post';
                             - # post에 있는 author_id 값을 author 테이블에서 지울 경우 post에서는 author_id값을 NULL로 바꾸는 것
-                            - ALTER TABLE post DROP FOREIGN KEY post_author_fk, DROP INDEX  post_author_fk;
-                            - ALTER TABLE post ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) ON DELETE SET NULL;
+                            - ALTER TABLE post 
+                              DROP FOREIGN KEY post_author_fk, 
+                              DROP INDEX  post_author_fk;
+                            - ALTER TABLE post 
+                              ADD CONSTRAINT post_author_fk 
+                              FOREIGN KEY (author_id) 
+                              REFERENCES author(id) 
+                              ON DELETE SET NULL;
                             - # 위와 같이 실행하면 author의 값을 지우게 되면 post의 FK값은 NULL이 됨
                     3. RESTRICT
                         - FK로 잡은 테이블의 데이터가 남아 있으면, FK 대상 데이터 삭제/수정 불가
@@ -206,10 +224,10 @@ SQL 명령어
         - CASE
             - 문법:
                 - CASE
-                - WHEN [compare_value] THEN result
-                - WHEN [compare_value] THEN result
-                - ELSE result
-                - END as 새컬럼명
+                  WHEN [compare_value] THEN result
+                  WHEN [compare_value] THEN result
+                  ELSE result
+                  END as 새컬럼명
             - CASE 와 END로 이루어져 있고 원하는 조건 내에 존재하지 않으면 ELSE 문을 타고 ELSE 문이 없을경우 NULL을 return
             - 예)
                 - SELECT name, CASE WHEN grade >= 90 THEN 'A' WHEN grade >= 80 THEN 'B' WHEN grade >= 70 THEN 'C' ELSE 'F' END as my_grade from grade_table;
@@ -240,34 +258,56 @@ SQL 명령어
     - REGEXP 와 NOT REGEXP
         - 검색 패턴
         - 정규표현식을 토대로 패턴 연산 수행
-        - SELECT * FROM author WHERE name REGEXP ' ^h|o$';
+        - SELECT * 
+          FROM author 
+          WHERE name REGEXP '^h|o$';
         - 'h'로 시작하거나 'o'로 끝나는
     - JOIN: INNER JOIN 과 OUTER JOIN
         - 두 개 이상의 테이블의 컬럼을 조합하는 것
         - INNER JOIN - 가장 일반적인 형태
-            - 테이블1 INNER JOIN 테이블2;
+            - 테이블1 
+              INNER JOIN 테이블2;
             - 테이블1과 테이블2의 공통변수가 있는 데이터만 조회
             - 이때 두 테이블의 자리를 바꿔도 결과는 똑같다
-
-            - SELECT * FROM 테이블1 INNER JOIN 테이블2 ON 테이블1.컬럼명 = 테이블2.참조컬럼명;
+            - SELECT * FROM 테이블1 
+              INNER JOIN 테이블2 
+              ON 테이블1.컬럼명 = 테이블2.참조컬럼명;
                 - 테이블1의 테이블1.컬럼명과 테이블2의 테이블2.참조컬럼명가 ON 조건에 일치하는 경우만 조회
-                    - 예) SELECT * FROM tableA INNER JOIN tableB ON tableA.ID = tableB.A_ID;
-                    - 예) SELECT * FROM tableA AS a INNER JOIN tableB AS b ON a.ID = b.a_id;  => AS 를 넣어주면 더 간결해짐
+                    - 예) SELECT * 
+                          FROM tableA 
+                          INNER JOIN tableB 
+                          ON tableA.ID = tableB.A_ID;
+                    - 예) SELECT * 
+                          FROM tableA AS a 
+                          INNER JOIN tableB AS b 
+                          ON a.ID = b.a_id;
+                          => AS 를 넣어주면 더 간결해짐
                     - ***** ON 뒤에 오는 a.columna = b.columnb 의 두 값의 순서는 상관 없다
-
             - 예) author, post에 inner join 걸어서, author.name, author.email, post.title만을 조회해보자
-                - SELECT author.name, author.email, post.title FROM author INNER JOIN post ON author.id = post.author_id;
+                - SELECT author.name, author.email, post.title 
+                  FROM author 
+                  INNER JOIN post 
+                  ON author.id = post.author_id;
             - 예) author의 한 글쓴이가 post의 여러개의 글을 쓴 case insert
-                - SELECT a.name, a.email, p.title FROM author a INNER JOIN post p ON a.id = p.author_id;
+                - SELECT a.name, a.email, p.title 
+                  FROM author a 
+                  INNER JOIN post p 
+                  ON a.id = p.author_id;
         - OUTER JOIN 
             - LEFT OUTER JOIN (또는 그냥 LEFT JOIN) - RIGHT JOIN 보다 일반적으로 더 많이 사용
                 - 테이블1 LEFT JOIN 테이블2;
                 - 테이블1 기준으로 테이블2 결합 - 테이블1의 모든 데이터값은 다 나옴
-
-                - SELECT * FROM 테이블1 a LEFT JOIN 테이블2 b ON 테이블1.컬럼명 = 테이블2.참조컬럼명;
+                - SELECT * 
+                  FROM 테이블1 a 
+                  LEFT JOIN 테이블2 b 
+                  ON 테이블1.컬럼명 = 테이블2.참조컬럼명;
                 - 테이블1의 테이블1.컬럼명과 테이블2의 테이블2.참조컬럼명가 ON 조건에 일치하는 경우만 조회;
                     - 테이블1의 모든 데이터값은 다 나옴, 만약에 테이블2에 테이블2에 상당하는 값이 중복으로 나올 시 테이블1의 값이 중복된 만큼 출력됨
-                    - 예) SELECT * FROM author a LEFT JOIN post b ON a.id = b.author_id => author에 post left join해서 데이터 확인
+                    - 예) SELECT * 
+                          FROM author a 
+                          LEFT JOIN post b 
+                          ON a.id = b.author_id 
+                          => author에 post left join해서 데이터 확인
             - RIGHT OUTER JOIN (또는 그냥 RIGHT JOIN)
                 - 테이블1 RIGHT JOIN 테이블2;
                 - 테이블2 기준으로 테이블1 결합
@@ -282,8 +322,6 @@ SQL 명령어
         - UNION은 DISTINCT 키워드를 따로 명시하지 않아도 중복되는 레코드를 제거한다
         - UNION ALL 
             - 중복되는 레코드까지 모두 출력해주는 명령어
-
-
 
 
 sql 함수
