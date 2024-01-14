@@ -78,3 +78,15 @@ ORACLE 연산자
             - CONCAT(str1, str2)
                 - 2개만 연결 - 3개 이상 불가능
         - BETWEEN + AND, NOT BETWEEN + AND
+            - 예) SELECT name FROM author WHERE id BETWEEN 1 AND 3
+        - IN (list), NOT IN (list)
+            - 예) SELECT name FROM author WHERE id IN (1, 2, 3)
+            - 예) SELECT name AS "작가 이름"
+                  FROM author
+                  WHERE (id, name) IN ((1, '김%'), (2, '이%'));
+        - IS NULL, IS NOT NULL
+            - 주의: id = NUlL 또는 id <> NULL 할 시 에러가 난다 (이유: NULL은 비교 연산자 사용 불가)
+        - LIKE
+            - 문자열 비교 연산
+            - 와일드카드 사용 가능 
+                - '%' 임의의 문자 N개 / '_' 임의의 문자 1개 ('__'는 임의의 문자 2개, '___'는 임의의 문자 3개, and so on)
