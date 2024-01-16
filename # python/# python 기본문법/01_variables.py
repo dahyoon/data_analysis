@@ -154,8 +154,8 @@
 
 # 정보 입력 요구
     # input()
-        # input()의 값은 항상 str(문자) 값이 된다
-        # 그러므로 input()에 입력하는 str을 %d나 %f로 형변화 시켜줘야 된다 -> int(str) 아니면 float(str)
+        # input()의 return 값은 항상 str(문자) 값이 된다
+        # 그러므로 input()에 입력하는 str을 %d나 %f로 형변환 시켜줘야 된다 -> int(str) 아니면 float(str)
         # 예)
             # language = input("좋아하는 언어를 입력하세요.")
                 # 이때 language의 class는 string

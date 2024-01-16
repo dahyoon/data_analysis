@@ -71,7 +71,7 @@ import seaborn
 from matplotlib import pyplot
 import pandas
 
-file_path = '/Users/dayoonz/Desktop/안다윤/tips.csv'            # 찾고자 하는 디렉토리 주소 선언
+file_path = '/Users/dayoonz/Desktop/data_analysis/# python/# python 기본문법/tips.csv'            # 찾고자 하는 디렉토리 주소 선언
 csv_data = pandas.read_csv(file_path)
 print(csv_data)
 

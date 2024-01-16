@@ -1,0 +1,44 @@
+# terminal 
+# 참조: https://yozm.wishket.com/magazine/detail/746/#:~:text=*%20cd%20%3A%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EC%9D%B4%EB%8F%99%ED%95%98%EA%B8%B0&text=cd%20Desktop%EC%9D%84%20%EC%9E%85%EB%A0%A5%ED%95%98%EB%A9%B4,..%EC%9D%84%20%EC%9E%85%EB%A0%A5%ED%95%98%EB%A9%B4%20%EB%90%A9%EB%8B%88%EB%8B%A4!
+
+CLI, GUI
+- CLI (Command Line Interface)
+    - 화면에서 마우스 등을 이용해 컴퓨터를 조작하는 것이 아니라 터미널에서 텍스트를 통해 컴퓨터를 조작하는 명령어 기반의 인터페이스
+- GUI (Graphic User Interface)
+    - CLI와 다르게 화면에서 마우스를 통해 컴퓨터를 조작하는 그래픽 기반의 유저 인터페이스
+
+터미널
+- : 컴퓨터와 사용자 간 소통을 위한 인터페이스
+
+0. 터미널 사용하기
+    - 운영체제에 기본적으로 설치되어 있기에 따로 설치 불필요
+    - Mac: command + space 누르고 'terminal.app' 실행
+    - Windows: 윈도우 검색창에 cmd 입력 후 '명령 프롬프트'라는 앱 실행
+
+1. 탐색 명령어
+    - ls
+        - 현재 경로에 존재하는 파일/폴더 이름 확인
+        - list의 약자
+    - pwd 
+        - 현재 위치한 경로 출력
+        - print working directory의 약자
+    - cd 
+        - 디렉토리 이동
+        - change directory의 약자
+        - 예) cd data_analysis
+    - cd ..
+        - 폴더 밖으로 이동
+
+2. 파일/폴더 관리 명령어
+    - touch
+        - 파일 생성
+        - 예) touch test.txt
+    - mkdir
+        - 폴더 생성
+        - make directory의 약자
+        - 예) mkdir test
+    - cat   
+        - 파일 내용 확인
+        - concatenate의 약자
+        - 예) cat terminal.txt
+    - rm
