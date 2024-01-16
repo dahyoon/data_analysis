@@ -399,7 +399,6 @@ sql 함수
         - my_sql에서 두단어가 결합된 컬럼면을 지정할땐 보통 a단어_b단어   -> _ 사용
 
 
-
 mysql 연산자
     - mysql에서 없는 것
         - ==
@@ -605,7 +604,7 @@ dmbs (Data Management System)
         - 쿼리문은 관용적으로 대문자 사용(대소문자구문X)
         - 테이블명, 컬럼명, 변수명 (데이터)은 대소문자를 구분함
         - 관계형데이터베이스 (RDB) 라고도 부른다: 서로 관계를 갖는 데이터들의 집합
-    - DDL (Data Definition Lang): 테이블/컬럼 정의/변경하는 명령어
+    - DDL (Data Definition Lang) 데이터 정의어: 테이블/컬럼 정의/변경하는 명령어
         - CREATE TABLE 테이블명(필드이름1 필드타입1, 필드이름2 필드타입2, ...)
             - 생성
             - 예) CREATE TABLE author(id INT, name VARCHAR(10), email VARCHAR(20));
@@ -627,7 +626,13 @@ dmbs (Data Management System)
                 - ALTER TABLE 테이블명 DROP COLUMN 삭제할컬럼명;
         - DROP TABLE 테이블명
             - 삭제
-    - DML (Data Manipulation Lang): 데이터 조회/추가/수정/삭제
+        - RENAME
+        - TRUNCATE
+            - 테이블 안 모든 데이터를 한꺼번에 삭제
+            - 문법: TRUNCATE TABLE 테이블명
+            - 삭제 후 복구 불가능
+            - DELETE보다 속도 더 빠름
+    - DML (Data Manipulation Lang) 데이터 조작어: 데이터 조회/추가/수정/삭제
         - SELECT 
             - 조회 - 조건이 없으면 모든 data 조회
             - 문법: SELECT [ALL/DISTINCT] 컬럼/필드명 FROM 테이블명 WHERE 조건
@@ -772,9 +777,25 @@ dmbs (Data Management System)
                              content AS "내용"
                      FROM author
         - INSERT INTO 
-            - 데이터 추가
-            - 문법: INSERT INTO 테이블명(필드명1, 필드명2, 필드명3 ...) VALUES (데이터값1, 데이터값2, 데이터값3 ...);  -> 필드타입 넣을 필요 없음
-            - 예) INSERT INTO author(id, name, email) values (1, 'leo', 'leo@gmail.com');
+            - 테이블 한 건의 레코드 추가
+                - 문법1: INSERT INTO 테이블명 (필드명1, 필드명2, 필드명3 ...) VALUES (데이터값1, 데이터값2, 데이터값3 ...);  -> 필드타입 넣을 필요 없음
+                    - 예) INSERT INTO author(id, name, email) values (1, 'leo', 'leo@gmail.com');
+                    - 컬럼 순서는 실제 테이블의 컬럼 순서와 무관
+                    - 정의하지 않은 컬럼은 NULL이 입력됨
+                - 문법2: INSERT INTO 테이블명 VALUES (전체 컬럼의 value_list)
+                    - 예) INSERT INTO Pearl VALUES (13, 'merona', 'binggrae', 'melon', 600)
+                    - 전체 컬럼의 모든 값을 순서대로 입력해야 됨
+                    - 빈 값은 NULL 로 입력
+                        - 주의: MySQL에서는 안 되지만 ORACLE에서는 NULL 또는 작은 따옴표 ('')로 입력 가능 (**주의: 작은 따옴표 안에 공백이 있으면 안 됨 - 예) ' '는 하나의 공백 값으로 인식)
+            - 여러 건 입력 시
+                - 문법1: INSERT INTO 테이븖명 (컬럼1, 컬럼2, 컬럼3)
+                            VALUES (데이터1, 데이터2, 데이터3),
+                                   (데이터4, 데이터5, 데이터6),
+                                   (데이터7, 데이터8, 데이터9);
+                - 문법2: INSERT INTO 테이블명 VALUES (데이터1, 데이터2, 데이터3),
+                                                  (데이터4, 데이터5, 데이터6),
+                                                  (데이터7, 데이터8, 데이터9);
+            - 문자 또는 날짜 값은 작은 따옴표로 묶음 (숫자 데이터는 작은 따옴표 없이 사용)
         - UPDATE 
             - 데이터 수정
             - 문법: UPDATE 테이블명 SET 필드명1 = 수정값1, 필드명2 = 수정값2 WHERE 필드명 = 데이터값;
@@ -783,21 +804,19 @@ dmbs (Data Management System)
                  SET email = 'pearl.ahn@gmail.com' 
                  WHERE id = '2';
         - DELETE
-            - 데이터 삭제
+            - 데이터 삭제 (테이블에 존재하는 전체 레코드 삭제)
             - 문법: DELETE FROM 테이블명 WHERE 필드명 = 데이터값;
-            - 삭제 후 복구 가능 (TRUNCATE는 복구 불가)
             - 한 row 전체를 지우기 때문에 컬럼명이나 *를 지정해줄 필요 없다
+            - 삭제 후 복구 가능 (TRUNCATE는 복구 불가)
             - 조건을 빼버리면 테이블 전체를 지움 (조심해야 됨)
             - 예) DELETE FROM author 
-                 WHERE id >= 10;
-        - TRUNCATE 
-            - 테이블 안 모든 데이터를 한꺼번에 삭제
-            - 문법: TRUNCATE TABLE 테이블명
-            - 삭제 후 복구 불가능
-            - DELETE보다 속도 더 빠름
-    - DCL (Data Control Lang): 사용자 권한 관리 (계정 생성 후 권한부여)
+                  WHERE id >= 10;
+    - DCL (Data Control Lang) 데이터 제어어: 사용자 권한 관리 (계정 생성 후 권한부여)
         - GRANT (권한 부여)
-        - REVOKE (권한 제거)
+        - REVOKE (권한 취소)
+    - + TCL (Transaction Control Lan) 트랜젝션 제어어: 변경 내용을 확정/취소
+        - COMMIT
+        - ROLLBACK
 
 insert into codingtest (writer_id, price, status) values ('miyeon89', 1500, 'DONE');
 
