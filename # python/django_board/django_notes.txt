@@ -5,7 +5,7 @@ django 다운받기
     - git hub 웹사이트에 new repository 만들기 - 이름: django_board
     - terminal에 다음과 같이 입력:
         - git clone URL(github에서복사한것 -> django_board)
-        - pip install django                        -> django 프로젝트가 생성 가능하도록 필요한 패키지 설치
+        - pip3 install django                       -> django 프로젝트가 생성 가능하도록 필요한 패키지 설치
         - django-admin startproject board_project   -> board_project라는 이름의 파일(기본프로젝트:모든 프로젝트의 전체설정) 생성
         - python3 manage.py runserver               -> manage.py는 웹서버실행파일
 	- cd board_project
@@ -18,11 +18,11 @@ django 다운받기
     - python3 manage.py startapp board_main         -> 파일 생성
         - 여기서 중요한 파일: migrations, models.py, views.py
             - migrations
-		- table 구성변경 시 해당 폴더에 DDL쿼리가 자동 생성됨
+		        - table 구성변경 시 해당 폴더에 DDL쿼리가 자동 생성됨
             - models.py
-		- DB의 table의 구조와 똑같은 형태의 파이썬 class를 만드는 파일
+                - DB의 table의 구조와 똑같은 형태의 파이썬 class를 만드는 파일
             - views.py
-		- 사용자가 url을 통해 요청 시 url과 매핑되는 파이썬 함수가 있는 파일; 로직이 들어있는 파일
+		        - 사용자가 url을 통해 요청 시 url과 매핑되는 파이썬 함수가 있는 파일; 로직이 들어있는 파일
 --> 간단한 게시판 개발
 - 모델 생성
 	/board/models.py
@@ -41,7 +41,7 @@ django 다운받기
 
 DB setting
 - docker mysql 실행 및 board 스키마 생성
-- pip install mysqlclient
+- pip3 install mysqlclient
 - settings.py 수정
 	- host에 127.0.0.1 해야함에 유의
 - 데이터베이스 마이그레이션
