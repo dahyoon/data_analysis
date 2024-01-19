@@ -717,7 +717,7 @@ JAVASCRIPT
 	   - “개발자 도구”를 통해 확인
 	   - java의 system print와 유사한 용도로 사용
 
-    - 	javascript 적용방법
+    - javascript 적용방법
         - 내부 자바스크립트 코드로 적용
 	    - body 태그 안에 적용
 	- head 태그 안에 적용
@@ -818,7 +818,7 @@ JAVASCRIPT
 		- Date().toString();     // Mon May 16 2016 19:35:25 GMT+0900
     - 연산자
 	- 비교 연산자(comparison operator)
-	    - == : 값이 같으면 참을 반환함.단, 타입이 다를시 강제 타입변환
+	    - == : 값이 같으면 참을 반환함. 단, 타입이 다를시 강제 타입변환
 		- !=
 	    - === : 값이 같고, 같은 타입이면 참을 반환함. 
 		- !==

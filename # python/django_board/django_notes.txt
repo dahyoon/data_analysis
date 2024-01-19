@@ -1,5 +1,11 @@
 django
+    - : framework for building web applications with python
     - 모든 url매핑은 url.py
+    - 갖고 있는 기능
+        - admin site
+        - Object-relational mapper(ORM)
+        - Authentication
+        - Caching
 
 django 다운받기
     - git hub 웹사이트에 new repository 만들기 - 이름: django_board
@@ -9,9 +15,9 @@ django 다운받기
         - django-admin startproject board_project   -> board_project라는 이름의 파일(기본프로젝트:모든 프로젝트의 전체설정) 생성
         - python3 manage.py runserver               -> manage.py는 웹서버실행파일
 	- cd board_project
-	- python manage.py startapp board
+	- python3 manage.py startapp board
 	- cd board
-	- python manage.py runserver
+	- python3 manage.py runserver
 
     - google chrome 웹브라우저 URL에 localhost:8000 입력
     - google chrome 웹브라우저 URL에 localhost:8000/admin 입력
@@ -107,17 +113,12 @@ ORM
 
 DB 세팅
 - docker mysql 실행 및 board 스키마 생성
-- pip install mysqlclient
+- pip3 install mysqlclient
 - settings.py 수정
 
 마이그레이션
 - python3 manage.py makemigrations --> DDL문생성
 - python3 manage.py migrate --> DDL문 생성 후 반영
-
-DB 세팅
-- docker mysql 실행 및 board 스키마 생성
-- pip install mysqlclient
-- settings.py 수정
 
 docker exec -it board_mysql mysql -u root -p
 

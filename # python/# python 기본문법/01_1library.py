@@ -41,8 +41,8 @@ data_json = json.loads(response.text)
 # 출력 결과
 # "symbol": "BTCUSDT", "lastPrice": 가격
 for a in data_json:
-        if a['symbol'] == "BTCUSDT":
-                print(f"{a['symbol']}코인의 price는 {a['lastPrice']}이다.")
+    if a['symbol'] == "BTCUSDT":
+        print(f"{a['symbol']}코인의 price는 {a['lastPrice']}이다.")
 
 
 
@@ -61,8 +61,12 @@ print(csv_data)
 tip_by_gender = csv_data.groupby('gender')['tip'].agg(['mean', 'std']).reset_index()              # .groupby() 함수    # .agg() 집계함수  
                                                                                                   # # .agg():집계함수 ; mean:평균 ; std:표준편차
 tip_by_day = csv_data.groupby('day')['tip'].agg(['mean', 'std']).reset_index() 
-seaborn.barplot(x='gender', y='mean', data=tip_by_gender, yerr=tip_by_gender['mean'], capsize = 0.1)
-seaborn.despine()                                               # .despine() 테두리 없애주는 함수
+seaborn.barplot(x='gender', 
+                y='mean', 
+                data=tip_by_gender, 
+                yerr=tip_by_gender['mean'], 
+                capsize = 0.1)
+seaborn.despine()                          # .despine() 테두리 없애주는 함수
 pyplot.title('average tip per gender')
 pyplot.xlabel('gender')
 pyplot.ylabel('average tip (%)')
@@ -74,9 +78,13 @@ pyplot.show()           # 차트로 나올 것임
 
 # mysql, 파이썬 연동 라이브러리
 
-# pip install mysql-connector-python을 terminal에다 적어서 깔기
+# pip3 install mysql-connector-python을 terminal에다 적어서 깔기
 import mysql.connector
-connector = mysql.connector(host = "localhost", port = "3306", user = "root", password = "1234", database = "board")
+connector = mysql.connector(host = "localhost", 
+                            port = "3306", 
+                            user = "root", 
+                            password = "1234",
+                            database = "board")
 
 # 커서객체는 데이터베이스에서 쿼리의 결과를 검색하고 순회하는데 사용되는 객체
 cursor = connector.cursor()

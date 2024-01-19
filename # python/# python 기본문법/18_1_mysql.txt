@@ -190,9 +190,7 @@ SQL 명령어
                               DROP FOREIGN KEY post_ibfk_1, 
                               DROP INDEX author_id;
                             - ALTER TABLE post 
-                              ADD CONSTRAINT post_author_fk 
-                              FOREIGN KEY (author_id) 
-                              REFERENCES author(id) 
+                              ADD CONSTRAINT post_author_fk FOREIGN KEY (author_id) REFERENCES author(id) 
                               ON DELETE CASCADE;
                             - # 위와 같이 실행 => author(참조 source 테이블)의 값(row)을 지우게 되면 post(참조 갖고와서 만든 테이블)의 값(row)도 지워짐
                     2. SET NULL
