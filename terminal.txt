@@ -100,6 +100,14 @@ Linux
         - 특정한 디렉터리 아래로 이동
             - mv terminal.txt /<특정한디렉터리>/
 3. 그 외
+    - clear
+        - 터미널 정리하기
+    - history
+        - 이전 사용한 명령어 확인
+    - man 
+        - 원하는 명령어의 매뉴얼 확인
+        - manual의 약자
+        - 예) man ls
     - echo
         - 문자열을 화면에 보여줄 때 사용, echo와 리다이렉션을 사용하여 파일 생성/추가하는 작업 많이 함
         - 예) echo 'helloworld' -> helloworld 출력

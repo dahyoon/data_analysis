@@ -16,5 +16,5 @@ class HelloWorld:
         self.__message = message
 
 h = HelloWorld()
-h.message = "Helloe"
+h.message = "Hello"
 print(h.message)

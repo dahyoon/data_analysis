@@ -11,7 +11,7 @@ django 다운받기
     - git hub 웹사이트에 new repository 만들기 - 이름: django_board
     - terminal에 다음과 같이 입력:
         - git clone URL(github에서복사한것 -> django_board)
-        - pip3 install django                       -> django 프로젝트가 생성 가능하도록 필요한 패키지 설치
+        - pip3 install --upgrade django             -> django 프로젝트가 생성 가능하도록 필요한 패키지 설치
         - django-admin startproject board_project   -> board_project라는 이름의 파일(기본프로젝트:모든 프로젝트의 전체설정) 생성
         - python3 manage.py runserver               -> manage.py는 웹서버실행파일
 	- cd board_project
@@ -129,7 +129,6 @@ docker exec -it board_mysql mysql -u root -p
 3. 게시판 상세조회
     1) 제목, 내용, (작성자), 작성일, 수정일
 4. 게시글 수정 : 제목, 내용
-
 
 
 Models.py에 맨 밑 author 끝에 
