@@ -200,6 +200,11 @@
             # print(sta1.split())
             # >> ['hello', 'world', 'python']
 
+# list의 문자열을 int로 변환
+    # a = ['1', '2', '3', '4']
+    # num = list(map(int, a))
+    # >> [1, 2, 3, 4]
+
 # 최대값/최소값 구하기
     # 최대값
         # for문으로 구하기

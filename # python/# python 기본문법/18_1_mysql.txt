@@ -20,6 +20,7 @@ docker 컨테이너 내부로 접속
 - docker ps -a
 - docker start 컨테이너ID
 - docker exec -it 컨테이너ID(또는 컨테이너명) mysql -u root -p 1234*****
+    - 위 명령에서 `-it`는 대화형(interactive) 모드로 실행하고 터미널에 접속하도록 하는 옵션
     - 여기서 -p 다음을 입력하지 않고 enter 누르기 
     - 왜냐하면 history보면 다른 사람이 볼 수도 있기 때문
     - *****빼고 enter 누른 다음 enter password: 뜨면 1234 입력하고 enter

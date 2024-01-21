@@ -267,6 +267,15 @@
         # 먼저 import math 해야됨
         # 다음 math.sqrt(x)
 
+# int인지 float인지 확인
+    # isinstance(x, int)
+        # x = 12
+        # isinstance(x, int)
+        # >> True
+        # y = 12.0
+        # isinstance(y, float)
+        # >> True
+
 # 연습문제(숫자형)_교제
     # 아래와 같은 2차 방정식을 파이썬 수식으로 코딩하고 y의 결과를 출력
     # y = 2.5 * x^2 + 3.3 * x + 6

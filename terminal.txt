@@ -1,5 +1,7 @@
-# terminal 
-# 참조: https://yozm.wishket.com/magazine/detail/746/#:~:text=*%20cd%20%3A%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EC%9D%B4%EB%8F%99%ED%95%98%EA%B8%B0&text=cd%20Desktop%EC%9D%84%20%EC%9E%85%EB%A0%A5%ED%95%98%EB%A9%B4,..%EC%9D%84%20%EC%9E%85%EB%A0%A5%ED%95%98%EB%A9%B4%20%EB%90%A9%EB%8B%88%EB%8B%A4!
+# terminal
+# 참조:
+    - https://yozm.wishket.com/magazine/detail/746/#:~:text=*%20cd%20%3A%20%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%20%EC%9D%B4%EB%8F%99%ED%95%98%EA%B8%B0&text=cd%20Desktop%EC%9D%84%20%EC%9E%85%EB%A0%A5%ED%95%98%EB%A9%B4,..%EC%9D%84%20%EC%9E%85%EB%A0%A5%ED%95%98%EB%A9%B4%20%EB%90%A9%EB%8B%88%EB%8B%A4!
+    - https://yozm.wishket.com/magazine/detail/2103/
 
 CLI, GUI
 - CLI (Command Line Interface)
@@ -15,53 +17,134 @@ CLI, GUI
     - Mac: command + space 누르고 'terminal.app' 실행
     - Windows: 윈도우 검색창에 cmd 입력 후 '명령 프롬프트'라는 앱 실행
 
+Linux
+- 대소문자 구분
+- 명령어는 모두 소문자, but 일부 옵션('-'표시를 붙이는 것은 옵션을 뜻함)에서 대문자 사용
+
 1. 탐색 명령어
     - ls
         - 현재 경로에 존재하는 파일/폴더 이름 확인
-        - list의 약자
+        - list segments의 약자
+        - 옵션 종류:
+            - ls -l: 파일들의 상세 정보 표시
+            - ls -a: 숨김 파일 표시
+            - ls -t: 최신 파일부터 표시
+            - ls -rt: 오래된 파일부터 표시 
+            - ls -F: 파일 표시할 때 파일의 타입을 나타내는 문자열을 표시(/디렉터리, *실행파일, @심볼릭 링크)
+                - 심볼릭 링크: 원본 파일을 가리키도록 링크만 연결시켜둔 것; 윈도우의 바로가기 링크와 같은 개념
+            - ls -R: 하위 디렉터리의 내용까지 표시
+        - 조합:
+            - ls -al, ls -alt, ls -altF
     - pwd 
         - 현재 위치한 경로 출력
         - print working directory의 약자
     - cd 
-        - 디렉토리 이동
+        - 디렉터리 이동
         - change directory의 약자
         - 예) cd data_analysis
-    - cd ..
-        - 폴더 밖으로 이동
+        - 옵션 종류:
+            - cd ~: 홈디렉토리로 이동
+            - cd ..: 상위 디렉터리로 이동
+                - cd ../../ 같은 식으로 여러 단계를 한 번에 이동 가능
+            - cd /dir: 절대 경로를 지정해 이동
+            - cd -: 바로 전의 디렉터리로 이동
 
 2. 파일/폴더 관리 명령어
     - touch
-        - 파일 생성
+        - 빈 파일 생성/ 파일의 날짜와 시간 수정 시 사용
         - 예) touch test.txt
+        - 옵션 종류:
+            - touch -c: 파일의 시간을 현재 시간으로 갱신
+            - touch -r <참고하는 파일> <바뀌어질 파일>: <바뀌어질 파일>의 날짜 정보를 <참고하는 파일>의 정보와 동일하게 변경
     - mkdir
-        - 폴더 생성
+        - 폴더/디렉터리 생성
         - make directory의 약자
         - 예) mkdir test
+        - 옵션 종류:
+            - mkdir -p <디렉터리명>/<하위 디렉터리명>
     - cat   
         - 파일 내용 확인
-        - concatenate의 약자
+        - catenate (연결하다)의 약자
         - 예) cat terminal.txt
-    - rm
-        - 파일 삭제
+    - rm 
+        - 파일/폴더/디렉터리 삭제
         - remove의 약자
-        - 예) rm testPEarl.txt
+        - 예) rm testPEarl.txt -> 파일 삭제
+        - 옵션 종류:
+            - rm -r: 디렉터리 제거 (내부의 파일까지 제거; r 은 recursive의 약자) (삭제 시 확인을 함)
+            - rm -rf: 디렉터리 제거 (삭제 시 확인을 안 함)
+            - rm -i *.txt: txt로 끝나는 모든 파일을 삭제할지 물어보면서 삭제
     - rmdir
         - 폴더 삭제 (내부에 파일이 없을 때만 가능)
         - remove directory의 약자
-    - rm -r
-        - 파일을 갖고 있는 폴더 삭제
-        - '-'표시를 붙이는 것은 옵션을 뜻함; r은 recursive의 약자 -> rm -r은 내부의 파일까지 제거
     - cp
         - 파일/폴더 복사
         - copy의 약자
-        - 예) cp 복사할파일/폴더 원하는경로/이름
+        - 예) cp <복사할파일/폴더> <원하는경로/이름>
             - cp terminal.txt terminal_copied.txt
+        - 옵션 종류:
+            - cp -f: 파일이 이미 있는 경우 덮어쓰기
+            - cp -R: 디렉터리 복사할 경우, 하위 디렉터리도 모두 복사
     - mv
         - 파일/폴더 이동, 이름 변경
         - move의 약자
-        - 예) mv 이동시킬파일 이동시킬디렉토리
-            - mv terminal.txt data_analysis_local
-        - 예) mv 원래파일이름 변경될파일이름
+
+        - 이름 변경
+            - mv <원래파일이름> <변경될파일이름>
             - mv test.txt text_changed.txt
-
-
+        - 파일/폴더/디렉터리 이동
+            - mv <이동시킬파일> <이동시킬디렉토리>
+            - mv terminal.txt data_analysis_local
+        - 상위 디렉터리로 이동
+            - mv terminal.txt ../
+        - 특정한 디렉터리 아래로 이동
+            - mv terminal.txt /<특정한디렉터리>/
+3. 그 외
+    - echo
+        - 문자열을 화면에 보여줄 때 사용, echo와 리다이렉션을 사용하여 파일 생성/추가하는 작업 많이 함
+        - 예) echo 'helloworld' -> helloworld 출력
+        - 예) echo $PATH -> 패스로 지정된 문자열 출력 
+        - 옵션 종류:
+            - echo -e 문자열: 이스케이프 문자열 해석, 개행을 표시할 수 있음
+                - 예) 개행을 표시할 수 있음: echo -e "안녕하세요\n이렇게 하면\n새 줄이 생겨요."
+            - echo *: ls와 유사하게 현재 디렉터리의 파일과 폴더 출력
+            - echo hello redirection > <생성할 파일>: 리다이렉션 '>'을 사용해 hello.txt파일 생성, 파일 내용에는 echo로 표시되는 내용이 들어감
+            - echo hello2 >> hello.txt: 추가 연산자 >>를 사용해 기존 파일에 문자열 추가 
+    - ip addr / ifconfig
+        - 접속한 리눅스의 IP 정보 출력
+        - ip addr
+        - ifconfig
+    - ss 
+        - 네트워크 상태 확인
+        - socket statistics의 약자
+        - 옵션 종류:
+            - ss -a: 모든 포트 확인
+            - ss -t: TCP 포트 확인
+            - ss -u: UDP 포트 확인
+            - ss -l: LISTEN 상태 포트 확인
+            - ss -p: 프로세스 표시
+            - ss -n: 호스트, 포트, 사용자명을 숫자(number)로 표시
+        - 조합:
+            - ss -tln: TCP 포트 중 LISTEN 상태인 포트의 번호(number) 확인
+    - nc
+        - 포트가 열렸는지 확인 (전에는 telnet명령어를 사용함)
+        - netcat의 약자
+        - 예) nc IP주소 포트
+        - 옵션 종류:   
+            - nc -v IP주소 포트: 더 자세한 정보가 남음
+            - nc -l 포트: 현재 서버의 포트를 오픈 (방화벽에 해당 포트 번호가 설정함)
+    - ps
+        - 현재 실행중인 프로세스 목록/상태 출력
+        - 종류:
+            - ps aux: 실행중인 모든 프로세스 출력
+            - ps auxww: 실행중인 모든 프로세스를 전체 커맨드를 포함해 출력
+            - ps aus | grep {패턴}: 특정 문자열과 매칭되는 프로세스 찾기
+    - grep
+        - 입력 패턴에 매칭되는 내용을 찾음
+        - ed의 명령어인 g/re/p(내용 전체를 정규식으로 찾은 다음 프린트하라: global search for a regular expression and print matching lines)
+        - 보통 find, ps 등과 조합하여 사용
+        - 종류:
+            - grep "패턴" 파일경로: 파일에서 특정 패턴을 만족하는 부분 찾기
+            - grep --with-filename --line-number "패턴" 파일경로: 파일명과 라인을 함께 표시
+            - grep --invert=match "패턴": 매칭하지 않는 부분 표시
+            - cat 파일경로 | grep "패턴"
