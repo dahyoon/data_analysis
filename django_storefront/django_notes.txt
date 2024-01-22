@@ -1,0 +1,91 @@
+# Setting Up the Development Environment
+    - Upgrade Python to the latest version
+    $ python3 --version -> python 버전 확인 (Windows는 python --version)
+    $ pip3 install --upgrade pipenv
+        - pipenv: dependency management tool for installing our application dependencies in virtual environments
+            -> this way, our application dependencies will not clash with other application's dependencies
+    - Using VSCode
+        - Extensions > search: `python` > install: `Python` by Microsoft (ms-python.python)
+
+# Creating Django Project
+    $ cd Desktop -> django 프로잭트 생성할 경로로 이동
+    $ mkdir storefront -> storefront라는 폴더 생성
+    $ cd storefront -> storefront로 이동
+    $ pipenv install django -> installing django using pipenv inside a virtual environment
+        $ echo $VIRTUAL_ENV -> virtual environment path경로 확인하기 (/Users/dayoonz/.local/share/virtualenvs/storefront-Z3pgsHq9)
+        - Command + 위에 경로 눌러서 해당 폴더 안에 내용 확인 (혹은 브라우저나 파일에서 찾아서 확인해도 됨)
+            - `bin` folder contains a bunch of binaries like `python`, `pip`, `django-admin`, etc.
+        -> pipenv created a virtual environment and installed django inside that environment
+    - 생성된 파일 확인하기
+        - 터미널에 ls 입력하여 Pipfile과 Pipfile.lock 있는 것을 확인
+        $ code . -> a visual studio code; if this doesn't work on the terminal, just drag and drop the foler (storefront) onto VSCode
+        - Pipfile 열어보기
+            - JavaScript 프로잭트를 위한 package.json 같은 것
+            - 필요한 파이썬 버전 표시되어 있음을 확인
+                - [requres]
+                python_version = "3.9"
+            - Packages that our application is dependent upon
+                - [packages]
+                django = "*"   -> 아무 버전 혹은 가장 최신 버전의 django
+    $ pipenv shell
+        -> activating virtual environment -> use the python interpreter inside this virtual environment, not the python interpreter that is installed globally on this machine
+    $ django-admin 
+        -> starting a new project -> django-admin is a utility that comes with django
+        -> shows all the available subcommands
+        -> e.g., check, shell, runserver, startproject, test, testserver, etc.
+    $ django-admin startproject storefront
+        -> 3개의 storefront 디렉토리가 있을 것 (하나는 터미널에서 만든 것, 그리고 하나는 프로젝트, 그 안에 하나는 the core of our application)
+        -> 두번째 storefront 디렉터리 지우기 (-> so we don't have a django project at this stage)
+    $ django-admin startproject storefront .
+        -> 뒤에 점'.'을 붙임으로 현재 디렉터리를 프로젝트 디렉토리로 사용할 것을 의미 -> django는 새로운 디렉터리를 생성하지 않을 것
+        -> .py 파일들을 담고 있는 'storefront'라는 디렉터리 하나 생성됨
+        - storefront 디렉터리 안에 있는 모듈들:
+            - __init__.py : a file that defines this directory as a package
+            - settings.py : a module where we define our application settings
+            - url.py : a module where we define the urls of our application
+            - asgi.py & wsgi.py : modules that are used for deployment
+        - manage.py : a wrapper around django admin
+            - instead of 'django-admin' command on terminal, we're going to use this module 
+            - reason: manage.py takes the settings of this project into account
+    $ python manage.py runserver
+        - optionally, we can apply a port number after -> e.g., python3 manage.py runserver 9000
+            - if we don't insert a port number, it will automatically set it as 8000 by default
+            - but if you have another application running on port 8000, you should explicitly set the port number to other number
+        - Warning sign: "You have 18 unapplied migration(s)... " -> don't worry
+        - "Starting development server at http://127.0.0.1:8000/"
+            - copy "http://127.0.0.1:8000/" into a browser (if on Mac, Command + click)
+
+# Using the Integrated Terminal in VSCode
+    - so far, we've been using a separate terminal window
+    - but VSCode has an integrated terminal window that is easier to use
+    - to use this, we need to properly configure it to use python interpreter inside our virtual environment
+    - to use this, go back to our terminal window
+    $ Ctrl + C -> stopping the web server
+    - On VSCode, `View` > `Command Palette` (shift + command + P) > `Python: Select Interpreter`
+        - currently, python is using the interpreter that is globally installed on this machine (i.e., '/usr/local/bin/python3.11')
+        - but we should use the one inside our virtual environment
+    $ pipenv --venv
+        - finding the path to our virtual environment
+        - copy the path: /Users/dayoonz/.local/share/virtualenvs/django_storefront-XUZBKqup
+    - On VSCode, `View` > `Command Palette` (shift + command + P) > `Python: Select Interpreter` > `Enter path or find an existing interpreter`
+        - paste the path (/Users/dayoonz/.local/share/virtualenvs/django_storefront-XUZBKqup) and append '/bin/python' at the end
+            - if on Windows, use `\` instead of `/`
+            -> /Users/dayoonz/.local/share/virtualenvs/django_storefront-XUZBKqup/bin/python
+        - `View` > `Command Palette` (shift + command + P) > `Python: Select Interpreter` > 'Enter interpreter path...`
+            > type: /Users/dayoonz/.local/share/virtualenvs/django_storefront-XUZBKqup/bin/python >
+    - 생성된 디렉터리 확인
+        - .vscode 디렉터리(폴더) 안에 settings.json이 있음
+            - settings.json 파일 안에 다음과 같이 있어야 함:
+                {"pyton.pythonPath": "/Users/dayoonz/.local/share/virtualenvs/django_storefront-XUZBKqup/bin/python"}
+    - when we open the terminal on VSCode, VSCode automatically activates the virtual environment for this project
+    $ python manage.py runserver
+        - moving forward, we'll use integrated terminal window here (VSCode) since it's easier
+        - can hide/show terminal by Ctrl + `
+    - If error pops up and says 'invalid syntax':
+        - open a new terminal and write the following:
+        $ python manage.py runserver
+
+# Creating First App 
+- every django project is essentially a collection of various apps, each providing a certain functionality
+    - open `settings.py` module 
+    
