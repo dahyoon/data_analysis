@@ -163,6 +163,7 @@ Linux
 
 java 버전 바꾸기
 > 출처: https://phoenixnap.com/kb/set-environment-variable-mac
+> 출처: https://support.apple.com/ko-kr/guide/terminal/apd382cc5fa-4f58-4449-b20a-41c53c006f8f/mac
 - 원하는 java 버전을 인터넷에서 다운 받고 (예), java 21) 터미널에서 환경 변수 바꾸기
 - 아래와 같이 입력
     * 컴퓨터 내 존재하는 모든 환경 변수 확인
