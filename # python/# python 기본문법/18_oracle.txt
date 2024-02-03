@@ -504,13 +504,37 @@ ORACLE 연산자
     - ROLLBACK
 
 함수 유형
-    - 생성 주체
+    - 생성 주체ㄴ
         - 사용자 정의 함수 (User Defined Function) - 사용자가 정의
-        - 내장 함수 (Built-in Function) - 벤더가 정의
+        - 내장 함수 (Built-in Function) - 벤더가 정의 
+            - 예) Oracle에서 SUM(), LENGTH() 등등
     - 적용 범위
         - 단일 행 함수 (Single-Row Function)
             - 문자형 함수, 숫자형 함수, 날짜형 함수
             - 제어 함수, 변환 함수, NULL 관련 함수
+            - 특징:
+                - 각 행(row)에 대해 개별적으로 작용하고 그 결과를 반환
+                    - 단일 행 내에 있는 하나/복수의 값을 인수로 사용
+                    - 여러 행에 걸친 값을 사용할 수 없음
+                - 함수 중첩 (함수의 인자로 함수를 사용) 가능
+                - SELECT, WHERE, ORDER BY 절에 사용 가능
+            - 예) SELECT player_name, LENGTH(player_name) AS 길이
+                  FROM player;
+                  >> 'player_name'과 '길이'라는 필드이름을 가진 테이블이 출력되고, 각 행에는 player_name과 player_name의 길이가 숫자로 담긴 값들이 담겨져 있을 것
+                  >> 예) player_name이 '윤희준'이면 길이는 3
+            - Oracle의 단일행 내장 함수
+                - 문자형 함수: 문자형 변수 처리 
+                    - 예) LOWER(), UPPER(), ASCII(), CHR(), CONCAT(), SUBSTR(), LENGTH(), LTRIM(), RTRIM(), TRIM()
+                - 숫자형 함수: 숫자형 변수 처리
+                    - 예) ABS(), SIGN(), MOD(), CEIL(), FLOOR(), ROUND(), TRUNC(), SIN(), COS(), TAN(), EXP(), POWER(), SQRT(), LOG(), LN()
+                - 변환 함수: 문자, 숫자, DATE형 값의 타입 변환
+                    - 예) TO_CHAR(), TO_NUMBER(), TO_DATE()
+                - 날짜형 함수: DATE 타입의 변수 처리
+                    - 예) SYSDATE(), EXTRACT(), TO_NUMBER(TO_CHAR(d,'DD'|'MM'|'YY'))
+                - 제어 함수: 논리값에 따른 값의 처리
+                    - 예) CASE, DECODE
+                - NULL 관련 함수: NULL 처리
+                    - 예) NVL(), NULLIF(). COALESCE()
         - 다중 행 함수 (Multi-Row Function)
             - 그룹 함수 (Group Function)
                 - 집계 함수 (Aggregate Function) 포함

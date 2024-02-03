@@ -13,15 +13,15 @@ django 다운받기
         - git clone URL(github에서복사한것 -> django_board)
         - pip3 install --upgrade django             -> django 프로젝트가 생성 가능하도록 필요한 패키지 설치
         - django-admin startproject board_project   -> board_project라는 이름의 파일(기본프로젝트:모든 프로젝트의 전체설정) 생성
-        - python3 manage.py runserver               -> manage.py는 웹서버실행파일
+        - python manage.py runserver               -> manage.py는 웹서버실행파일
 	- cd board_project
-	- python3 manage.py startapp board
+	- python manage.py startapp board
 	- cd board
-	- python3 manage.py runserver
+	- python manage.py runserver
 
     - google chrome 웹브라우저 URL에 localhost:8000 입력
     - google chrome 웹브라우저 URL에 localhost:8000/admin 입력
-    - python3 manage.py startapp board_main         -> 파일 생성
+    - python manage.py startapp board_main         -> 파일 생성
         - 여기서 중요한 파일: migrations, models.py, views.py
             - migrations
 		        - table 구성변경 시 해당 폴더에 DDL쿼리가 자동 생성됨

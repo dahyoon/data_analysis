@@ -1,6 +1,0 @@
-# cd Desktop -> django 프로잭트 생성할 경로로 이동
-# mkdir storefront -> storefront라는 폴더 생성
-# cd storefron -> storefront로 이동
-# pipenv install django -> pipenv 사용해서 storefront폴더 안에 django 프로잭트 (virtual environment)생성
-https://www.youtube.com/watch?v=rHux0gMZ3Eg
-@13:17

@@ -156,3 +156,21 @@ Linux
             - grep --with-filename --line-number "패턴" 파일경로: 파일명과 라인을 함께 표시
             - grep --invert=match "패턴": 매칭하지 않는 부분 표시
             - cat 파일경로 | grep "패턴"
+
+버전 찾기
+- % python3 --version
+- % java --version
+
+java 버전 바꾸기
+> 출처: https://phoenixnap.com/kb/set-environment-variable-mac
+- 원하는 java 버전을 인터넷에서 다운 받고 (예), java 21) 터미널에서 환경 변수 바꾸기
+- 아래와 같이 입력
+    * 컴퓨터 내 존재하는 모든 환경 변수 확인
+    % env
+    * 자바의 환경변수 출력
+    % echo $JAVA_HOME
+    * 자바의 환경변수를 최신 자바 버전의 자바로 변경
+    % export JAVA_HOME=[최신 자바 버전의 경로]
+        - 예) export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+- 다시 터미널 창에 java --version 입력해보면 자바가 최신 버전으로 변경된 것을 확인
+

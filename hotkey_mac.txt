@@ -6,6 +6,7 @@ powerpoint:
     - 글꼴 서식 해제: Command + Space bar
 vscode:
     - new file: ctr + option + command + n
-    - open terminal: ctr + shift + `
+    - open terminal: ctrl + shift + `
     - 명령프롬프트: Command + Shift + p
     - 화면 확대/축소: command + '-' or '+'
+    - 옆 목록 안 보이게 하기: Command + B
