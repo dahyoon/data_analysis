@@ -192,10 +192,18 @@
         # a = "python"
         # print(a.find('x'))
         # >> -1
-    # st.rfind('o') - 대상 문자열에 지정한 문자가 몇 번째 index에 **마지막**으로 있는지 출력하는 함수
+    # str.rfind('o') - 대상 문자열에 지정한 문자가 몇 번째 index에 **마지막**으로 있는지 출력하는 함수
         # a = "hello"
         # print(a.rfind('l'))
         # >> 3
+    # str.rindex(substring, start, end) - start과 end는 선택사항
+        # text = "apple banana apple apple grape"
+        # print(text.rindex("apple"))
+        # >> 19
+        # print(text.rindex("apple", 15)) - start 인덱스 지정
+        # >> 19
+        # print(text.rindex("apple", 0, 18)) - start 및 end 인덱스 지정
+        # >> 13
 # 연습
         # whatyouwant = input("아무런 문자나 입혁해주세요")
         # search = input("찾고자 하는 문자 1개만 입력해주세요")
