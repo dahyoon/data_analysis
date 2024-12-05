@@ -47,6 +47,7 @@ $ pip3 list
 # function 사용법 확인
 ? str.join
 
+
 데이터 분석 도구:
 - R (무료)
 - Python (무료)
@@ -54,9 +55,12 @@ $ pip3 list
 - QGIS - 지리정보 분석 (입지 선정)
 - GeoDA - 공간회귀 분석 (지역간 연관성)
 
+
 접속 정보 (브라우저 및 os 버전 정보):
 - window: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
 - Mac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+
+
 
 6/16 데이터 수집 (requests)
 - 개발자도구 Developer Tools 열기: 웹브라우저에서 option + command + I
